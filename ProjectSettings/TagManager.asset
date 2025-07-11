@@ -9,6 +9,7 @@ TagManager:
   - Inpipe
   - MIpipe
   - doubler
+  - Selectable
   layers:
   - Default
   - TransparentFX

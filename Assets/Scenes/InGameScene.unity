@@ -7707,6 +7707,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlimeA
       objectReference: {fileID: 0}
+    - target: {fileID: 2401214898830271249, guid: a7ffdfec0ecf21748b16fedc5449b289, type: 3}
+      propertyPath: m_TagString
+      value: Selectable
+      objectReference: {fileID: 0}
     - target: {fileID: 4264157187528795847, guid: a7ffdfec0ecf21748b16fedc5449b289, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
