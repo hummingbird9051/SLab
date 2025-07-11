@@ -38,4 +38,4 @@
 # Check your .gitignore first to ensure they aren't already ignored completely.
 # *.asset filter=lfs diff=lfs merge=lfs -text # 주의: 일부 .asset 파일은 텍스트 기반일 수 있음
 # *.controller filter=lfs diff=lfs merge=lfs -text
-# *.anim filter=lfs diff=lfs merge=lfs -text
+# *.anim filter=lfs diff=lfs merge=lfs -text 
