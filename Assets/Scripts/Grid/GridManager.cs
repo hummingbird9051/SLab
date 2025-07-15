@@ -1,16 +1,19 @@
 using System.Linq.Expressions;
 using System.Numerics;
+using UnityEditor.Rendering;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
 public class GridManager : MonoBehaviour
 {
-    [SerializeField] private int width = 20;
-    [SerializeField] private int height = 10;
-    [SerializeField] private float cellSize = 1f;
+    private int width;
+    private int height;
+    [SerializeField] private float cellSize = 0.5f;
 
     [SerializeField] private GridView gridView;
+    [SerializeField] private GridLineVisualizer gridLineVisualizer;
 
+    //해당 그리드가 들어갈 위치를 정하기 위해 카메라 컴포넌트로 받음.
     public Camera gridCamera;
 
     private IGrid<int> grid;
@@ -19,8 +22,16 @@ public class GridManager : MonoBehaviour
     private int currentTileId = 1;
     void Start()
     {
-        grid = new GridSystem<int>(width, height, cellSize, transform.parent.position, 
+        width = (int)(gridCamera.orthographicSize * gridCamera.aspect) * 2;
+        height = (int)(gridCamera.orthographicSize) * 2 - 1;
+        Debug.Log(width + ", " + height);
+        grid = new GridSystem<int>(width, height, cellSize, transform.parent.position - new Vector3(width / 2, height / 2 + 1, 0), 
             (g, x, y) => 0);
+
+        if (gridLineVisualizer != null)
+        {
+            gridLineVisualizer.DrawGridLines(grid);
+        }
 
         gridView.Initialize(grid);
     }
@@ -39,8 +50,6 @@ public class GridManager : MonoBehaviour
         {
             Vector3 mouseWorldPos = gridCamera.ScreenToWorldPoint(Input.mousePosition);
             grid.GetXY(mouseWorldPos, out int x, out int y);
-
-            Debug.Log(x + ", " + y);
         }
 
         if (Input.GetMouseButtonUp(0))

@@ -26,6 +26,8 @@ public class GridView : MonoBehaviour
         }
     }
 
+    
+
     //특정 칸 비주얼 업데이트
     public void UpdateTileVisual(int x, int y)
     {
@@ -42,6 +44,17 @@ public class GridView : MonoBehaviour
         CreateTileVisual(x, y);
     }
 
+    public void DeleteAllTileVisual()
+    {
+        for (int x = 0; x < grid.GetWidth(); x++)
+        {
+            for (int y = 0; y < grid.GetHeight(); y++)
+            {
+                DeleteTileVisual(x, y);
+            }
+        }
+    }
+
     //특정 위치에 타일 비주얼 생성
     private void CreateTileVisual(int x, int y)
     {
@@ -54,8 +67,22 @@ public class GridView : MonoBehaviour
         tileObject.transform.position = grid.GetWorldPosition(x, y);
 
         SpriteRenderer spriteRenderer = tileObject.AddComponent<SpriteRenderer>();
+
         spriteRenderer.sprite = tileSprites[tileId];
 
+        tileObject.transform.localScale *= grid.GetCellSize();
+        tileObject.AddComponent<PolygonCollider2D>();
         visualGridArray[x, y] = tileObject;
     }
+
+
+    private void DeleteTileVisual(int x, int y)
+    {
+        int tileId = grid.GetValue(x, y);
+        if (tileId <= 0 || tileId >= tileSprites.Length) return;
+
+        if (visualGridArray[x, y] == null) return;
+        else Destroy(visualGridArray[x, y]);
+    }
+    
 }

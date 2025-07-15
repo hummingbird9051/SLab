@@ -1,9 +1,64 @@
+using System.Collections.Generic;
 using UnityEngine;
+using Vector3 = UnityEngine.Vector3;
 
 public class PoolManager : SingletonBase<PoolManager>
 {
+
+    [System.Serializable]
+    public class Pool
+    {
+        public string tag;
+        public GameObject prefab;
+        public int size;
+    }
+
+    [SerializeField] private GameObject parentObject;
+
+    public List<Pool> pools;
+
+    private Dictionary<string, Queue<GameObject>> poolDict;
+
     protected override void Awake()
     {
         base.Awake();
+        InitializePools();
+    }
+
+    public void InitializePools()
+    {
+        poolDict = new Dictionary<string, Queue<GameObject>>();
+        foreach (Pool pool in pools)
+        {
+            Queue<GameObject> objects = new Queue<GameObject>();
+            for (int i = 0; i < pool.size; i++)
+            {
+                GameObject obj = Instantiate(pool.prefab);
+                obj.transform.SetParent(parentObject.transform);
+                obj.SetActive(false);
+                objects.Enqueue(obj);
+            }
+            poolDict.Add(pool.tag, objects);
+        }
+    }
+
+    public GameObject SpawnFromPool(string tag, Vector3 position)
+    {
+        //해당 키 없으면 반환
+        if (!poolDict.ContainsKey(tag))
+        {
+            return null;
+        }
+
+        //풀에서 하나 뽑아서
+        GameObject objectFromPool = poolDict[tag].Dequeue();
+
+        //활성화하고
+        objectFromPool.SetActive(true);
+        objectFromPool.transform.position = position;
+
+        //다시 큐에 넣음(재사용)
+        poolDict[tag].Enqueue(objectFromPool);
+        return objectFromPool;
     }
 }

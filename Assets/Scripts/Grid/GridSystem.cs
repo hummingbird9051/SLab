@@ -5,6 +5,8 @@ public class GridSystem<TGridObject> : IGrid<TGridObject>
 {
     private int width;
     private int height;
+    private int xCellCount;
+    private int yCellCount;
     private TGridObject[,] gridArray;
     private Vector3 originPos;
     private float cellSize;
@@ -15,12 +17,14 @@ public class GridSystem<TGridObject> : IGrid<TGridObject>
         this.width = width;
         this.height = height;
         this.cellSize = cellSize;
+        this.xCellCount = (int)(width / cellSize);
+        this.yCellCount = (int)(height / cellSize);
         this.originPos = originalPos;
-        gridArray = new TGridObject[width, height];
+        gridArray = new TGridObject[xCellCount, yCellCount];
 
-        for (int x = 0; x < width; x++)
+        for (int x = 0; x < xCellCount; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < yCellCount; y++)
             {
                 gridArray[x, y] = createGridObject(this, x, y);
             }
@@ -28,8 +32,8 @@ public class GridSystem<TGridObject> : IGrid<TGridObject>
     }
 
 
-    public int GetWidth() => width;
-    public int GetHeight() => height;
+    public int GetWidth() => xCellCount;
+    public int GetHeight() => yCellCount;
     public float GetCellSize() => cellSize;
 
     public Vector3 GetWorldPosition(int x, int y)
@@ -45,7 +49,7 @@ public class GridSystem<TGridObject> : IGrid<TGridObject>
 
     public void SetValue(int x, int y, TGridObject value)
     {
-        if (x >= 0 && y >= 0 && x < width && y < height)
+        if (x >= 0 && y >= 0 && x < xCellCount && y < yCellCount)
         {
             gridArray[x, y] = value;
         }
@@ -53,7 +57,7 @@ public class GridSystem<TGridObject> : IGrid<TGridObject>
 
     public TGridObject GetValue(int x, int y)
     {
-        if (x >= 0 && y >= 0 && x < width && y < height)
+        if (x >= 0 && y >= 0 && x < xCellCount && y < yCellCount)
         {
             return gridArray[x, y];
         }
