@@ -2,9 +2,16 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class Slime : MonoBehaviour
 {
     public static event Action OnSlimeEnabled;
+    public static event Action OnSlimeDisabled;
+
+
+    void Start()
+    {
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void OnEnable()
@@ -12,9 +19,10 @@ public class Slime : MonoBehaviour
         OnSlimeEnabled?.Invoke();
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnDisable()
     {
-
+        OnSlimeDisabled?.Invoke();
     }
+
+    
 }

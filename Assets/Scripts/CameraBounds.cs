@@ -5,6 +5,8 @@ public class CameraBounds : MonoBehaviour
 {
     private Transform topWall, bottomWall, leftWall, rightWall;
 
+    public PhysicsMaterial2D noBouncinessMaterial2D;
+
     void Start()
     {
         CreateBounds();
@@ -27,6 +29,8 @@ public class CameraBounds : MonoBehaviour
         bottomWall.gameObject.AddComponent<BoxCollider2D>();
         leftWall.gameObject.AddComponent<BoxCollider2D>();
         rightWall.gameObject.AddComponent<BoxCollider2D>();
+
+        bottomWall.GetComponent<BoxCollider2D>().sharedMaterial = noBouncinessMaterial2D;
     }
 
     void SetBoundsPositions()

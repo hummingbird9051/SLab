@@ -33,7 +33,6 @@ public class GridView : MonoBehaviour
     {
         if (x < 0 || y < 0 || x >= grid.GetWidth() || y >= grid.GetHeight())
         {
-            Debug.Log("ÀÎµ¦½º ¹üÀ§ ¹þ¾î³²");
             return;
         }
         if (visualGridArray[x, y] != null)

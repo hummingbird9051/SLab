@@ -61,4 +61,8 @@ public class PoolManager : SingletonBase<PoolManager>
         poolDict[tag].Enqueue(objectFromPool);
         return objectFromPool;
     }
+
+    public void DeSpawnToPool(GameObject obj) {
+        obj.SetActive(false);
+    }
 }
