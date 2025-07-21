@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 3981598021990327641}
   - component: {fileID: 8495581748011478620}
   - component: {fileID: 2750472629001836217}
-  - component: {fileID: 6287931916721986233}
   - component: {fileID: 1728531873543050700}
+  - component: {fileID: 456587264349568640}
   m_Layer: 0
-  m_Name: GroundSlime 2
+  m_Name: AbsorbableSlime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -166,18 +166,6 @@ PolygonCollider2D:
       - {x: 0.074999996, y: 0.035}
       - {x: 0.055, y: 0.055}
   m_UseDelaunayMesh: 0
---- !u!114 &6287931916721986233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2566694490266330442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b86d63285fd7d4047b47a89b3a71f83a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &1728531873543050700
 Rigidbody2D:
   serializedVersion: 5
@@ -205,3 +193,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &456587264349568640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2566694490266330442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2716caec13f594dafafe39c8e80d70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

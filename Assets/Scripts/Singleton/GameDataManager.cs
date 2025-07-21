@@ -6,4 +6,9 @@ public class GameDataManager : SingletonBase<GameDataManager>
     {
         base.Awake();
     }
+
+    void Update()
+    {
+    }
+
 }

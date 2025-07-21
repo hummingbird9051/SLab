@@ -22,11 +22,11 @@ public class GridManager : MonoBehaviour
     private int currentTileId = 1;
     void Start()
     {
-        width = (int)(gridCamera.orthographicSize * gridCamera.aspect) * 2;
-        height = (int)(gridCamera.orthographicSize) * 2 - 1;
+        width = (int)((gridCamera.orthographicSize * gridCamera.aspect) * 2 + 0.5f);
+        height = (int)(gridCamera.orthographicSize) * 2 - 2;
         Debug.Log(width + ", " + height);
-        grid = new GridSystem<int>(width, height, cellSize, transform.parent.position - new Vector3(width / 2, height / 2 + 1, 0), 
-            (g, x, y) => 0);
+        grid = new GridSystem<int>(width, height, cellSize, transform.parent.position - new Vector3(width / 2, height / 2, 0) + new Vector3(-0.5f, 0f), 
+            (gridSystem, cellX, cellY) => 0);
 
         if (gridLineVisualizer != null)
         {
@@ -41,25 +41,44 @@ public class GridManager : MonoBehaviour
         HandleInput();
     }
 
+    public void SetCurrentTileId(int val)
+    {
+        currentTileId = val;
+    }
+
     private void HandleInput()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) currentTileId = 1;
-        if (Input.GetKeyDown(KeyCode.Alpha2)) currentTileId = 2;
-
         if (Input.GetMouseButton(0))
         {
             Vector3 mouseWorldPos = gridCamera.ScreenToWorldPoint(Input.mousePosition);
             grid.GetXY(mouseWorldPos, out int x, out int y);
+            if (currentTileId != 0)
+            {
+                grid.SetValue(x, y, currentTileId);
+            }
+            gridView.TemporaryTileVisual(x, y);
         }
-
         if (Input.GetMouseButtonUp(0))
         {
             Vector3 mouseWorldPos = gridCamera.ScreenToWorldPoint(Input.mousePosition);
             grid.GetXY(mouseWorldPos, out int x, out int y);
+            if (currentTileId != 0)
+            {
+                grid.SetValue(x, y, currentTileId);
 
-            grid.SetValue(x, y, currentTileId);
-
-            gridView.UpdateTileVisual(x, y);
+                gridView.UpdateTileVisual(x, y);
+            }
+            else
+            {
+                grid.SetValue(x, y, currentTileId);
+                gridView.DeleteOneTileVisual(x, y);
+            }
         }
+
+        
+
+
     }
+
+    
 }

@@ -1,29 +1,25 @@
 using System.Collections;
 using UnityEngine;
 
-public class GroundSlime : Slime, IDraggable, ISelectable, IAbsorbable
+public class GroundSlime : Slime
 {
     protected Rigidbody2D rb;
     protected Vector2 lastVelocity;
 
-    private bool isDragging = false;
+
     private bool isChangingDirection = false;
 
-    private void Start()
+
+    protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.linearVelocity = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
     }
 
-    void Awake()
-    {
-    }
-
     // Update is called once per frame
-    protected void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         lastVelocity = rb.linearVelocity;
-        rb.linearVelocity = isDragging ? Vector2.zero : lastVelocity;
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer != null)
         {
@@ -31,50 +27,25 @@ public class GroundSlime : Slime, IDraggable, ISelectable, IAbsorbable
             {
                 spriteRenderer.flipX = true;
             }
-            else if (rb.linearVelocity.x == 0)
-            {
-                spriteRenderer.flipX = spriteRenderer.flipX;
-            }
-            else
+            else if (rb.linearVelocity.x > 0)
             {
                 spriteRenderer.flipX = false;
             }
         }
-            
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        ContactPoint2D contact = collision.contacts[0];
-        Debug.Log(contact.collider.gameObject);
-        Vector3 reflectedVelocity = Vector3.Reflect(lastVelocity, contact.normal);
-        rb.linearVelocity = reflectedVelocity;
-             
+        //ContactPoint2D contact = collision.contacts[0];
+        //GroundSlime selfContact = collision.collider.GetComponent<GroundSlime>();
+        //if (selfContact == null)
+        //{
+        //    Debug.Log(contact.collider.gameObject);
+        //    Vector3 reflectedVelocity = Vector3.Reflect(lastVelocity, contact.normal);
+        //    rb.linearVelocity = reflectedVelocity;
+        //}
     }
 
-    public void Select() { }
-
-    public void Deselect() { }
-
-    public void BeginDrag()
-    {
-        isDragging = true;
-    }
-
-    public void Drag()
-    {
-        isDragging = true;
-    }
-
-    public void EndDrag()
-    {
-        isDragging = false;
-    }
-
-    public void BeAbsorbed(Transform target)
-    {
-        rb.linearVelocity = target.position - transform.position;
-    }
 
     public void OnAnimationLoopEnd()
     {
