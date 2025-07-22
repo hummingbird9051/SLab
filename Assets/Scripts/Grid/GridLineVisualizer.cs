@@ -1,6 +1,7 @@
 using UnityEngine;
 
 public class GridLineVisualizer : MonoBehaviour
+//그리드 라인 생성(게임 시작 시)
 {
     [SerializeField] private Material lineMaterial;
     [SerializeField] private Color lineColor = Color.white;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface IGrid<TGridObject>
+public interface IGrid<TGridObject> //그리드 시스템을 만들기 위한 인터페이스
 {
     int GetWidth();
     int GetHeight();

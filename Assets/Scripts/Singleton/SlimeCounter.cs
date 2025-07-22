@@ -1,6 +1,9 @@
 using UnityEngine;
 
 public class SlimeCounter : SingletonBase<SlimeCounter>
+//슬라임 카운터 - 슬라임 객체가 enable되면 countUp, disable되면 countDown
+//SlimeCount라는 컴포넌트를 외부에서 접근하여 GameDataManager에서 슬라임 500개가 넘으면 다음 슬라임으로 갈 수 있게
+
 {
     private int _slimeCount = 0;
 
@@ -27,13 +30,11 @@ public class SlimeCounter : SingletonBase<SlimeCounter>
     private void CountUp()
     {
         _slimeCount++;
-        Debug.Log("슬라임 한개 추가");
     }
 
     private void CountDown()
     {
         _slimeCount--;
-        Debug.Log("슬라임 하나 제거");
     }
 
     public void ResetSlimeCount()

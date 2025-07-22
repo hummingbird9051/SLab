@@ -5,6 +5,7 @@ using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
 public class GridManager : MonoBehaviour
+//그리드 매니저로 타일 아이디 조정 후 입력
 {
     private int width;
     private int height;
@@ -74,10 +75,6 @@ public class GridManager : MonoBehaviour
                 gridView.DeleteOneTileVisual(x, y);
             }
         }
-
-        
-
-
     }
 
     

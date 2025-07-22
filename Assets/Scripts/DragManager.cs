@@ -8,7 +8,7 @@ public class DragManager : MonoBehaviour
     private IDraggable currentDragTarget;
     private GameObject currentDragObject;
 
-    public Camera inCamera;
+    public Camera inCamera; //해당 카메라 안에서만 선택이 가능하도록
 
     
     void Update()
@@ -30,7 +30,8 @@ public class DragManager : MonoBehaviour
         }
     }
 
-    private void HandleSelection()
+    private void HandleSelection() 
+     //마우스의 스크린 좌표를 월드 좌표로 바꿔서 IDraggable 컴포넌트가 존재하는 객체만 움직일 수 있게
     {
         Vector2 worldPoint = inCamera.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
@@ -48,7 +49,7 @@ public class DragManager : MonoBehaviour
         }
     }
 
-    private void HandleRelease()
+    private void HandleRelease() //마우스를 놓았을 때 작업
     {
         currentDragTarget?.EndDrag();
         currentDragTarget = null;

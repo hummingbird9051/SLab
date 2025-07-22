@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Camera))]
-public class CameraBounds : MonoBehaviour
+public class CameraBounds : MonoBehaviour // 카메라 바깥으로 슬라임이 나가지 못하게 설정하기 위한 테두리 Rigidbody 설정
 {
     private Transform topWall, bottomWall, leftWall, rightWall;
 
