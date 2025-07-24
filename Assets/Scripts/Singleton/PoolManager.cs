@@ -65,4 +65,19 @@ public class PoolManager : SingletonBase<PoolManager>
     public void DeSpawnToPool(GameObject obj) {
         obj.SetActive(false);
     }
+
+    public void RefreshPool()
+    { 
+        List<Transform> childList = new List<Transform>();
+
+        foreach (Transform child in parentObject.transform) 
+        {
+            childList.Add(child);
+        }
+
+        for (int i = parentObject.transform.childCount - 1; i >= 0; i--)
+        {
+            DeSpawnToPool(childList[i].gameObject);
+        }
+    }
 }
