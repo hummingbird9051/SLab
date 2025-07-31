@@ -1768,9 +1768,13 @@ MonoBehaviour:
   tileObjects:
   - tileObject: {fileID: 0}
     tileSize: {x: 0, y: 0}
-  - tileObject: {fileID: 3193072500177990403, guid: a8bc5c684fcef5745b4378a2aee29c0e, type: 3}
+  - tileObject: {fileID: 3625785168801079385, guid: 23b68ba53f05b6f448841f216dbe9782, type: 3}
     tileSize: {x: 2, y: 1}
-  - tileObject: {fileID: 3106191451982205726, guid: 3cb525d4676934f4d8f102a128864396, type: 3}
+  - tileObject: {fileID: 7798839610923210744, guid: b4d6be5bb96f4ef4cb84136cbaa4b63d, type: 3}
+    tileSize: {x: 1, y: 1}
+  - tileObject: {fileID: 2945954904056754371, guid: 7a63784f887469749824f36d14ebaf60, type: 3}
+    tileSize: {x: 1, y: 1}
+  - tileObject: {fileID: 8102417630043493226, guid: a4409ff5ac884e546821530f4b763d35, type: 3}
     tileSize: {x: 1, y: 1}
 --- !u!1 &904900016
 GameObject:
