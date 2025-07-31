@@ -5,7 +5,7 @@ public class CameraBounds : MonoBehaviour // Ä«¸Ş¶ó ¹Ù±ùÀ¸·Î ½½¶óÀÓÀÌ ³ª°¡Áö ¸øÇ
 {
     private Transform topWall, bottomWall, leftWall, rightWall;
 
-    public PhysicsMaterial2D noBouncinessMaterial2D;
+    private PhysicsMaterial2D noBouncinessMaterial2D;
 
     void Start()
     {

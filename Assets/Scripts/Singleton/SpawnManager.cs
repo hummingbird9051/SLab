@@ -2,16 +2,14 @@ using UnityEngine;
 
 public class SpawnManager : SingletonBase<SpawnManager>
 {
-    public string[] tag;
+    public string[] groundPrefabTag;
+    public string[] machinePrefabTag;
     private int currentSpawnNum; // 0:일반, 1:귀족, 2:킹
 
-    void Start()
-    {
-        currentSpawnNum = 0;
-    }
     protected override void Awake()
     {
         base.Awake();
+        currentSpawnNum = GameDataManager.Instance.GetSlimeLevel();
     }
 
     void Update()
@@ -26,11 +24,11 @@ public class SpawnManager : SingletonBase<SpawnManager>
     {
         if (MachineOrGround == "Machine")
         {
-            PoolManager.Instance.SpawnFromPool("MachineSlime", pos);
+            PoolManager.Instance.SpawnFromPool(machinePrefabTag[currentSpawnNum], pos);
         }
         else if (MachineOrGround == "Ground")
         {
-            PoolManager.Instance.SpawnFromPool(tag[currentSpawnNum], pos);
+            PoolManager.Instance.SpawnFromPool(groundPrefabTag[currentSpawnNum], pos);
         }
     }
 
@@ -38,9 +36,20 @@ public class SpawnManager : SingletonBase<SpawnManager>
     {
         PoolManager.Instance.RefreshPool();
 
-        if (currentSpawnNum >= tag.Length) return;
+        if (currentSpawnNum >= groundPrefabTag.Length) return;
 
         currentSpawnNum += 1;
+    }
+
+    public int GetCurrentSlimeLevel()
+    {
+        return currentSpawnNum;
+    }
+
+    //나중에 무조건 지워야 하는 것.
+    public void SetCurrentSlimeLevel(int level)
+    {
+        currentSpawnNum = level;
     }
 
 }

@@ -7,6 +7,8 @@ public class GridView : MonoBehaviour
 {
     private IGrid<int> grid;
     private GameObject[,] visualGridArray;
+    private int width;
+    private int height;
     private int prevX = -1;
     private int prevY = -1;
     private Vector2Int currentTileSize;
@@ -23,11 +25,13 @@ public class GridView : MonoBehaviour
     public void Initialize(IGrid<int> grid)
     {
         this.grid = grid;
-        visualGridArray = new GameObject[grid.GetWidth(), grid.GetHeight()];
+        width = grid.GetWidth();
+        height = grid.GetHeight();
+        visualGridArray = new GameObject[width, height];
         DrawInitialGrid();
     }
     
-    //초기 그리드 전체 그리기, tileID 0인 상태로 모든걸 그리므로 spriteRenderer 0인 상태로 오브젝트만 생성
+    //초기 그리드 전체 그리기, null 오브젝트만 생성
     private void DrawInitialGrid()
     {
         
@@ -43,7 +47,7 @@ public class GridView : MonoBehaviour
     //드래그 도중에 보여줄 임시 비주얼
     public void TemporaryTileVisual(int x, int y)
     {
-        if (x < 0 || y < 0 || x >= grid.GetWidth() || y >= grid.GetHeight())
+        if (x < 0 || y < 0 || x >= grid.GetWidth() || y >= grid.GetHeight() || !CheckBound(x, y, currentTileSize))
         {
             return;
         }
@@ -59,7 +63,8 @@ public class GridView : MonoBehaviour
             }
         }
 
-        if (visualGridArray[x, y] == null)
+        SpriteRenderer renderer = visualGridArray[x, y] == null ? null : visualGridArray[x, y].GetComponent<SpriteRenderer>();
+        if (renderer == null)
         {
             if (prevX != -1 || prevY != -1)
             {
@@ -79,18 +84,12 @@ public class GridView : MonoBehaviour
         {
             return;
         }
-        if (visualGridArray[x, y] == null)
-        {
-            CreateTileVisual(x, y);
-        }
-
-
         prevX = -1; prevY = -1;
     }
 
 
-    public void DeleteOneTileVisual(int x, int y) 
-        //그때 이야기하기로 하나만 지우는것보단 다 지우는게 낫다고 한 것 같아서 이건 삭제해도 무방함.
+    public void DeleteOneTileVisual(int x, int y)
+    //그때 이야기하기로 하나만 지우는것보단 다 지우는게 낫다고 한 것 같아서 이건 삭제해도 무방함.
     {
         if (x < 0 || y < 0 || x >= grid.GetWidth() || y >= grid.GetHeight())
         {
@@ -102,7 +101,7 @@ public class GridView : MonoBehaviour
         }
         DeleteTileVisual(x, y);
     }
-   
+
     //인게임 UI로 모든 배치된 분열기 제거.
     public void DeleteAllTileVisual()
     {
@@ -131,6 +130,9 @@ public class GridView : MonoBehaviour
         tileObject.transform.localScale *= grid.GetCellSize(); //크기(그리드 셀 크기만큼 조정하기)
         visualGridArray[x, y] = tileObject; //해당 그리드 배열(좌표)에 오브젝트 생성.
         currentTileSize = tileObjects[tileId].tileSize; //현재 타일 크기
+
+        if(!CheckBound(x, y, currentTileSize)) return;
+
         for (int indX = 0; indX < tileObjects[tileId].tileSize.x; indX++)  
             //타일 크기만큼 각 좌표에 오브젝트 생성
         {
@@ -140,7 +142,10 @@ public class GridView : MonoBehaviour
                 {
                     continue;
                 }
-                visualGridArray[x + indX, y + indY] = new GameObject();
+
+                GameObject clearObj = new GameObject();
+                clearObj.transform.parent = tileObject.transform;
+                visualGridArray[x + indX, y + indY] = clearObj;
             }
         }
     }
@@ -159,5 +164,12 @@ public class GridView : MonoBehaviour
             }
         }
     }
-    
+
+    private bool CheckBound(int x, int y, Vector2Int tileSize)
+    {
+        if(x + tileSize.x > width) return false;
+        else if(y + tileSize.y > height) return false;
+        return true;
+    }
+
 }

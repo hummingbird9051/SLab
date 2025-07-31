@@ -7,7 +7,13 @@ public class SlimeCounter : SingletonBase<SlimeCounter>
 {
     private int _slimeCount = 0;
 
-    public int SlimeCount => _slimeCount;
+    public int SlimeCount
+    {
+        get
+        {
+            return _slimeCount;
+        }
+    }
     protected override void Awake()
     {
         base.Awake();

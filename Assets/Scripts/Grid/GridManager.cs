@@ -1,6 +1,3 @@
-using System.Linq.Expressions;
-using System.Numerics;
-using UnityEditor.Rendering;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
@@ -53,7 +50,7 @@ public class GridManager : MonoBehaviour
         {
             Vector3 mouseWorldPos = gridCamera.ScreenToWorldPoint(Input.mousePosition);
             grid.GetXY(mouseWorldPos, out int x, out int y);
-            if (currentTileId != 0)
+            if (currentTileId != 0) // 0번은 없는 오브젝트이므로
             {
                 grid.SetValue(x, y, currentTileId);
             }

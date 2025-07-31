@@ -40,7 +40,6 @@ public class GroundSlime : Slime //그라운드에 있는 슬라임 일반/귀족/킹 슬라임 모
         GroundSlime selfContact = collision.collider.GetComponent<GroundSlime>();
         if (selfContact == null) //컴포넌트로 GroundSlime객체 가져와 슬라임끼리는 부딪혀도 안튀어나가게 설정
         {
-            Debug.Log(contact.collider.gameObject);
             Vector3 reflectedVelocity = Vector3.Reflect(lastVelocity, contact.normal);
             rb.linearVelocity = reflectedVelocity;
         }

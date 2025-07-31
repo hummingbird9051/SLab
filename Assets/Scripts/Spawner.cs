@@ -13,7 +13,7 @@ public class Spawner : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.Space))
         {
-            SpawnManager.Instance.SpawnSlime("Ground", transform.position);
+            SpawnManager.Instance.SpawnSlime("Ground", new Vector3(Random.Range(transform.position.x + 1f, transform.position.x - 1f), Random.Range(transform.position.y + 1f, transform.position.y - 1f), transform.position.z));
         }
     }
 }

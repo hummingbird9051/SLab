@@ -13,7 +13,7 @@ public class SlimeCounterUI : MonoBehaviour
     {
         if (txtMeshPro != null)
         {
-            txtMeshPro.text = "SlimeCount = " + SlimeCounter.Instance.SlimeCount;
+            txtMeshPro.text = "SlimeCount: " + SlimeCounter.Instance.SlimeCount;
         }
         else
         {

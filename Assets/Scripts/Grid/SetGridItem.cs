@@ -13,8 +13,10 @@ public class SetGridItem : MonoBehaviour
         {
             for (int i = 0; i < transform.childCount; i++) // 각 자식의 순서를
             {
+                if (i == 0) continue; // tile 0번은 빈 오브젝트로 GridManager에 명시해 두었으므로 비우기.
                 int index = i;
                 GameObject child = transform.GetChild(index).gameObject;
+                Debug.Log(child);
                 if (child != null)
                 {
                     Button btn = child.AddComponent<Button>();
