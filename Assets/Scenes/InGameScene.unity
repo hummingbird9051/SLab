@@ -1772,8 +1772,8 @@ MonoBehaviour:
     tileSize: {x: 5, y: 7}
   - tileObject: {fileID: 6381897529808435770, guid: 7e2fbb545b321004da104c5482014e3d, type: 3}
     tileSize: {x: 10, y: 5}
-  - tileObject: {fileID: 2945954904056754371, guid: 7a63784f887469749824f36d14ebaf60, type: 3}
-    tileSize: {x: 1, y: 1}
+  - tileObject: {fileID: 6484132692979766369, guid: 588c8a1c91f074146b98279d074aeaef, type: 3}
+    tileSize: {x: 6, y: 4}
   - tileObject: {fileID: 8102417630043493226, guid: a4409ff5ac884e546821530f4b763d35, type: 3}
     tileSize: {x: 1, y: 1}
 --- !u!1 &904900016

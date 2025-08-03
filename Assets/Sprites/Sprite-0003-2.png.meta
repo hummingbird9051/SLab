@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 42da351e40526a14e832f907c6670b51
+guid: 3adba9034875584459ff963a5b51fc97
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5643105228771564274
-    second: Sprite-0003_0
+      213: -2284522665486319220
+    second: Sprite-0003-2_0
   - first:
-      213: 6719169754601135636
-    second: Sprite-0003_1
+      213: -6508757352818160013
+    second: Sprite-0003-2_1
   - first:
-      213: -2299854438439939197
-    second: Sprite-0003_2
+      213: -4909824430153510381
+    second: Sprite-0003-2_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -106,7 +106,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sprite-0003_0
+      name: Sprite-0003-2_0
       rect:
         serializedVersion: 2
         x: 95
@@ -121,14 +121,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e05ebe061b9afa1b0800000000000000
-      internalID: -5643105228771564274
+      spriteID: c810c5a5dbebb40e0800000000000000
+      internalID: -2284522665486319220
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-0003_1
+      name: Sprite-0003-2_1
       rect:
         serializedVersion: 2
         x: 191
@@ -143,14 +143,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 41e9c88ca494f3d50800000000000000
-      internalID: 6719169754601135636
+      spriteID: 37ecf082caf3ca5a0800000000000000
+      internalID: -6508757352818160013
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-0003_2
+      name: Sprite-0003-2_2
       rect:
         serializedVersion: 2
         x: 421
@@ -165,8 +165,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3839ea9c2964510e0800000000000000
-      internalID: -2299854438439939197
+      spriteID: 3125a23b1bcccdbb0800000000000000
+      internalID: -4909824430153510381
       vertices: []
       indices: 
       edges: []
@@ -185,9 +185,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Sprite-0003_0: -5643105228771564274
-      Sprite-0003_1: 6719169754601135636
-      Sprite-0003_2: -2299854438439939197
+      Sprite-0003-2_0: -2284522665486319220
+      Sprite-0003-2_1: -6508757352818160013
+      Sprite-0003-2_2: -4909824430153510381
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
