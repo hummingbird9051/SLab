@@ -1851,8 +1851,8 @@ MonoBehaviour:
     tileSize: {x: 10, y: 5}
   - tileObject: {fileID: 6484132692979766369, guid: 588c8a1c91f074146b98279d074aeaef, type: 3}
     tileSize: {x: 6, y: 4}
-  - tileObject: {fileID: 8102417630043493226, guid: a4409ff5ac884e546821530f4b763d35, type: 3}
-    tileSize: {x: 1, y: 1}
+  - tileObject: {fileID: 2241422792807448924, guid: b02d7b133ff527a40a0b27a365ac9dcd, type: 3}
+    tileSize: {x: 2, y: 2}
 --- !u!1 &904900016
 GameObject:
   m_ObjectHideFlags: 0
