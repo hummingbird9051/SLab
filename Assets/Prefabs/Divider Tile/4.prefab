@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4257334378545817032}
   - component: {fileID: 6016715782737127848}
   - component: {fileID: 8302007516398266898}
+  - component: {fileID: 3304549431046011136}
   m_Layer: 0
   m_Name: Sprite-0004-5
   m_TagString: Untagged
@@ -118,12 +119,24 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &3304549431046011136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804027649556174059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58190b727e1261f4085ad5048b582991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2013841952174317854
 GameObject:
   m_ObjectHideFlags: 0

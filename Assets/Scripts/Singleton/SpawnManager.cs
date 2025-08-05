@@ -20,21 +20,23 @@ public class SpawnManager : SingletonBase<SpawnManager>
         }
     }
 
-    public void SpawnSlime(string MachineOrGround, Vector3 pos)
+    public GameObject SpawnSlime(string MachineOrGround, Vector3 pos)
     {
         if (MachineOrGround == "Machine")
         {
-            PoolManager.Instance.SpawnFromPool(machinePrefabTag[currentSpawnNum], pos);
+            return PoolManager.Instance.SpawnFromPool(machinePrefabTag[currentSpawnNum], pos);
         }
         else if (MachineOrGround == "Ground")
         {
-            PoolManager.Instance.SpawnFromPool(groundPrefabTag[currentSpawnNum], pos);
+            return PoolManager.Instance.SpawnFromPool(groundPrefabTag[currentSpawnNum], pos);
         }
+        return null;
     }
 
     public void UpgradeSlime()
     {
         PoolManager.Instance.RefreshPool();
+        SpawnSlime("Ground", new Vector3(0, 0, -1));
 
         if (currentSpawnNum >= groundPrefabTag.Length) return;
 

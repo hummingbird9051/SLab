@@ -3,6 +3,7 @@ using NUnit.Framework;
 using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class GridView : MonoBehaviour
 {
@@ -62,10 +63,9 @@ public class GridView : MonoBehaviour
         
         Vector2Int tileSize = tileToPlace.tileSize;
         if (!IsPlacementValid(x, y, tileSize)) return;
-
         tempVisualObject = Instantiate(
             tileToPlace.tileObject, 
-            grid.GetWorldPosition(x, y), 
+            new Vector3(grid.GetWorldPosition(x, y).x, grid.GetWorldPosition(x, y).y, -1),
             Quaternion.identity,
             this.transform);
         tempVisualObject.transform.localScale *= grid.GetCellSize();
@@ -134,7 +134,7 @@ public class GridView : MonoBehaviour
     {
         int tileId = grid.GetValue(x, y); //그리드 좌표 x,y에 넣을 타일 ID 받아오기
 
-        if (tileId <= 0 || tileId >= tileObjects.Count) return; //타일 ID가 현재 타일 갯수보다 많으면 리턴
+        if (tileId <= 0 || tileId >= tileObjects.Count) return; //타일 ID가 현재 타일 종류 갯수보다 많으면 리턴
 
         currentTileSize = tileObjects[tileId].tileSize; //현재 타일 크기
 
@@ -151,7 +151,6 @@ public class GridView : MonoBehaviour
             //타일 크기만큼 오브젝트 생성
             for (int indY = -(currentTileSize.y / 2); indY < currentTileSize.y / 2 + 1; indY++)
             {
-                Debug.Log($"{indX}, {indY}");
                 if (indX == 0 && indY == 0 || visualGridArray[x + indX, y + indY] != null)
                 {
                     continue;

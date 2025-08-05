@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
 
 public class GameDataManager : SingletonBase<GameDataManager>
 //슬라임 카운터에서 슬라임 갯수 정보를 넘겨받아 슬라임 500개가 넘으면 초기화 후 다음 단계 슬라임 생성.
 {
-    [SerializeField] private int _slimeNum;
+    [SerializeField] private int _slimeNum = 1;
     [SerializeField] private int _slimeLevel;
 
     private const string SLIME_NUM = "slimeNum";
@@ -34,7 +35,7 @@ public class GameDataManager : SingletonBase<GameDataManager>
 
     public void LoadSlimeNum()
     {
-        _slimeNum = PlayerPrefs.GetInt(SLIME_NUM, 0);
+        _slimeNum = PlayerPrefs.GetInt(SLIME_NUM, 1) > 1 ? PlayerPrefs.GetInt(SLIME_NUM, 1) : 1;
     }
 
     public int GetSlimeNum()
