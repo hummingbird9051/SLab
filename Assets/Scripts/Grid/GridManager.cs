@@ -56,6 +56,10 @@ public class GridManager : MonoBehaviour
             }
             gridView.TemporaryTileVisual(x, y);
         }
+        else
+        {
+            gridView.ClearTemporaryVisual();
+        }
         if (Input.GetMouseButtonUp(0))
         {
             Vector3 mouseWorldPos = gridCamera.ScreenToWorldPoint(Input.mousePosition);

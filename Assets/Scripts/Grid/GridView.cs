@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using Unity.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GridView : MonoBehaviour
 {
     private IGrid<int> grid;
     private GameObject[,] visualGridArray;
+    private GameObject tempVisualObject;
     private int width;
     private int height;
     private int prevX = -1;
@@ -47,43 +49,49 @@ public class GridView : MonoBehaviour
     //드래그 도중에 보여줄 임시 비주얼
     public void TemporaryTileVisual(int x, int y)
     {
-        if (x < 0 || y < 0 || x >= grid.GetWidth() || y >= grid.GetHeight() || !CheckBound(x, y, currentTileSize))
-        {
-            return;
-        }
+        if (prevX == x && prevY == y) return;
 
-        for (int indX = 0; indX < currentTileSize.x; indX++)
-        {
-            for (int indY = 0; indY < currentTileSize.y; indY++)
-            {
-                if (visualGridArray[x + indX, y + indY] != null)
-                {
-                    return;
-                }
-            }
-        }
+        prevX = x;
+        prevY = y;
 
-        SpriteRenderer renderer = visualGridArray[x, y] == null ? null : visualGridArray[x, y].GetComponent<SpriteRenderer>();
-        if (renderer == null)
-        {
-            if (prevX != -1 || prevY != -1)
-            {
-                DeleteTileVisual(prevX, prevY);
-            }
+        int tileId = grid.GetValue(x, y);
 
-            CreateTileVisual(x, y);
-            prevX = x;
-            prevY = y;
-        }
+        TileObject tileToPlace = tileObjects[tileId];
+
+        if (tempVisualObject != null) Destroy(tempVisualObject);
+        
+        Vector2Int tileSize = tileToPlace.tileSize;
+        if (!IsPlacementValid(x, y, tileSize)) return;
+
+        tempVisualObject = Instantiate(
+            tileToPlace.tileObject, 
+            grid.GetWorldPosition(x, y), 
+            Quaternion.identity,
+            this.transform);
+        tempVisualObject.transform.localScale *= grid.GetCellSize();
+
+
     }
+
+    //임시 비주얼 삭제
+
+    public void ClearTemporaryVisual()
+    {
+        if (tempVisualObject != null)
+        {
+            Destroy(tempVisualObject);
+        }
+
+        prevX = -1;
+        prevY = -1;
+    }
+
+
 
     //특정 칸 비주얼 업데이트
     public void UpdateTileVisual(int x, int y)
     {
-        if (x < 0 || y < 0 || x >= grid.GetWidth() || y >= grid.GetHeight())
-        {
-            return;
-        }
+        CreateTileVisual(x, y);
         prevX = -1; prevY = -1;
     }
 
@@ -109,7 +117,10 @@ public class GridView : MonoBehaviour
         {
             for (int y = 0; y < grid.GetHeight(); y++)
             {
-                DeleteTileVisual(x, y);
+                if (visualGridArray[x, y] != null)
+                {
+                    Destroy(visualGridArray[x, y]);
+                }
             }
         }
     }
@@ -125,19 +136,22 @@ public class GridView : MonoBehaviour
 
         if (tileId <= 0 || tileId >= tileObjects.Count) return; //타일 ID가 현재 타일 갯수보다 많으면 리턴
 
+        currentTileSize = tileObjects[tileId].tileSize; //현재 타일 크기
+
+        if (!IsPlacementValid(x, y, currentTileSize)) return;
+
         GameObject tileObject = Instantiate(tileObjects[tileId].tileObject, this.transform);//프리팹의 객체 복사
         tileObject.transform.position = new Vector3(grid.GetWorldPosition(x, y).x, grid.GetWorldPosition(x, y).y, -1); //위치 설정
         tileObject.transform.localScale *= grid.GetCellSize(); //크기(그리드 셀 크기만큼 조정하기)
         visualGridArray[x, y] = tileObject; //해당 그리드 배열(좌표)에 오브젝트 생성.
-        currentTileSize = tileObjects[tileId].tileSize; //현재 타일 크기
 
-        if(!CheckBound(x, y, currentTileSize)) return;
 
-        for (int indX = 0; indX < tileObjects[tileId].tileSize.x; indX++)  
-            //타일 크기만큼 각 좌표에 오브젝트 생성
+        for (int indX = -(currentTileSize.x / 2); indX < currentTileSize.x / 2 + 1; indX++)
         {
-            for (int indY = 0; indY < tileObjects[tileId].tileSize.y; indY++)
+            //타일 크기만큼 오브젝트 생성
+            for (int indY = -(currentTileSize.y / 2); indY < currentTileSize.y / 2 + 1; indY++)
             {
+                Debug.Log($"{indX}, {indY}");
                 if (indX == 0 && indY == 0 || visualGridArray[x + indX, y + indY] != null)
                 {
                     continue;
@@ -151,13 +165,32 @@ public class GridView : MonoBehaviour
     }
 
 
+    private bool IsPlacementValid(int x, int y, Vector2Int tileSize)
+    {
+        if (x < tileSize.x / 2 || y < tileSize.y / 2 || x + tileSize.x / 2 + 1 > width || y + tileSize.y / 2 + 1 > height)
+        {
+            return false;
+        }
+
+        for (int idx = -(tileSize.x / 2); idx < tileSize.x / 2 + 1; idx++)
+        {
+            for (int idy = -(tileSize.y / 2); idy < tileSize.y / 2 + 1; idy++)
+            {
+                if (visualGridArray[x + idx, y + idy] != null) return false;
+            }
+        }
+
+        return true;
+    }
+
     private void DeleteTileVisual(int x, int y)
     {
         int tileId = grid.GetValue(x, y);
         if (tileId <= 0 || tileId >= tileObjects.Count) return;
-        for (int indX = 0; indX < tileObjects[tileId].tileSize.x; indX++)
+        if (!IsPlacementValid(x, y, currentTileSize)) return;
+        for (int indX = -tileObjects[tileId].tileSize.x / 2; indX < tileObjects[tileId].tileSize.x / 2 + 1; indX++)
         {
-            for (int indY = 0; indY < tileObjects[tileId].tileSize.y; indY++)
+            for (int indY = -tileObjects[tileId].tileSize.y / 2; indY < tileObjects[tileId].tileSize.y / 2 + 1; indY++)
             {
                 if (visualGridArray[x + indX, y + indY] == null) return;
                 else Destroy(visualGridArray[x + indX, y + indY]);
@@ -165,11 +198,6 @@ public class GridView : MonoBehaviour
         }
     }
 
-    private bool CheckBound(int x, int y, Vector2Int tileSize)
-    {
-        if(x + tileSize.x > width) return false;
-        else if(y + tileSize.y > height) return false;
-        return true;
-    }
+    
 
 }
