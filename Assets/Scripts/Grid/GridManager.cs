@@ -17,7 +17,7 @@ public class GridManager : MonoBehaviour
     private IGrid<int> grid;
 
     //타일 번호 저장
-    private int currentTileId = 1;
+    private int currentTileId = 0;
     void Start()
     {
         width = (int)((gridCamera.orthographicSize * gridCamera.aspect) * 2 + 0.5f);
