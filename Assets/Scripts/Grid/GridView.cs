@@ -68,8 +68,21 @@ public class GridView : MonoBehaviour
             new Vector3(grid.GetWorldPosition(x, y).x, grid.GetWorldPosition(x, y).y, -1),
             Quaternion.identity,
             this.transform);
-        tempVisualObject.transform.localScale *= grid.GetCellSize();
 
+
+        //preproduction for TemporaryTileVisual Object
+        for (int i = 0; i < tempVisualObject.transform.childCount; i++)
+        {
+            GameObject child = tempVisualObject.transform.GetChild(i).gameObject;
+            if (child == null) continue;
+            Collider2D childCollider2D = child.GetComponent<Collider2D>();
+            if (childCollider2D == null) continue;
+            childCollider2D.enabled = false;
+            SpriteRenderer childSpriteRenderer = child.GetComponent<SpriteRenderer>();
+            if (childSpriteRenderer == null) continue;
+            childSpriteRenderer.color -= new Color(0, 0, 0, 0.5f);
+        }
+        tempVisualObject.transform.localScale *= grid.GetCellSize();
 
     }
 
