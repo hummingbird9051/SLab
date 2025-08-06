@@ -36,11 +36,9 @@ public class SpawnManager : SingletonBase<SpawnManager>
     public void UpgradeSlime()
     {
         PoolManager.Instance.RefreshPool();
-        SpawnSlime("Ground", new Vector3(0, 0, -1));
-
         if (currentSpawnNum >= groundPrefabTag.Length) return;
-
         currentSpawnNum += 1;
+        SpawnSlime("Ground", new Vector3(0, 0, -1));
     }
 
     public int GetCurrentSlimeLevel()
