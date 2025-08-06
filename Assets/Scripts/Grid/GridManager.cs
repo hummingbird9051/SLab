@@ -46,35 +46,32 @@ public class GridManager : MonoBehaviour
 
     private void HandleInput()
     {
-        if (Input.GetMouseButton(0))
+        Vector3 mouseWorldPos = gridCamera.ScreenToWorldPoint(Input.mousePosition);
+        grid.GetXY(mouseWorldPos, out int x, out int y);
+        if (currentTileId != 0) // 0번은 없는 오브젝트이므로
         {
-            Vector3 mouseWorldPos = gridCamera.ScreenToWorldPoint(Input.mousePosition);
-            grid.GetXY(mouseWorldPos, out int x, out int y);
-            if (currentTileId != 0) // 0번은 없는 오브젝트이므로
-            {
-                grid.SetValue(x, y, currentTileId);
-            }
+            grid.SetValue(x, y, currentTileId);
             gridView.TemporaryTileVisual(x, y);
         }
         else
         {
             gridView.ClearTemporaryVisual();
         }
-        if (Input.GetMouseButtonUp(0))
+
+        if (Input.GetMouseButtonUp(0) && grid.GetValue(x, y) != 0)
         {
-            Vector3 mouseWorldPos = gridCamera.ScreenToWorldPoint(Input.mousePosition);
-            grid.GetXY(mouseWorldPos, out int x, out int y);
             if (currentTileId != 0)
             {
                 grid.SetValue(x, y, currentTileId);
 
                 gridView.UpdateTileVisual(x, y);
+                currentTileId = 0;
             }
-            else
-            {
-                grid.SetValue(x, y, currentTileId);
-                gridView.DeleteOneTileVisual(x, y);
-            }
+        }
+
+        if (Input.GetMouseButtonUp(1))
+        {
+            currentTileId = 0;
         }
     }
 
