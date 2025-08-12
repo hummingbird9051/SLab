@@ -8,7 +8,7 @@ public class Doubler : MonoBehaviour
         Debug.Log(dividable.IsDivided);
         if (dividable != null && !dividable.IsDivided)
         {
-            GameObject spawnedObject = SpawnManager.Instance.SpawnSlime("Machine", transform.position);
+            GameObject spawnedObject = SpawnManager.Instance.SpawnSlime("Machine", other.transform.position);
             spawnedObject.GetComponent<IDividable>().BeDivide();
             dividable.BeDivide();
         }
