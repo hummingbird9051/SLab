@@ -147,7 +147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4322362034688301289}
   - component: {fileID: 3139599145342592372}
-  - component: {fileID: 580406555746154775}
+  - component: {fileID: 6118396898249595768}
   - component: {fileID: 5720032357487314882}
   - component: {fileID: 8869488077564905501}
   m_Layer: 0
@@ -227,7 +227,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &580406555746154775
+--- !u!60 &6118396898249595768
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -265,7 +265,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.8, y: 4.8}
+    oldSize: {x: 5, y: 5}
     newSize: {x: 4.8, y: 4.8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -273,22 +273,22 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.86558914, y: 0.8142771}
-      - {x: -0.9053583, y: 0.854269}
-      - {x: -0.92689514, y: 0.86490035}
-      - {x: -0.99416065, y: 0.86505586}
-      - {x: -1.0144873, y: 0.8545832}
-      - {x: -1.054802, y: 0.81431746}
-      - {x: -1.0652752, y: 0.79396194}
-      - {x: -1.0647526, y: -0.7932124}
-      - {x: -1.0544348, y: -0.8135883}
-      - {x: -1.0141582, y: -0.85450304}
-      - {x: -0.9935665, y: -0.8646563}
-      - {x: -0.9257582, y: -0.86478484}
-      - {x: -0.9056568, y: -0.85416293}
-      - {x: -0.86520004, y: -0.81390923}
-      - {x: -0.8549948, y: -0.7931287}
-      - {x: -0.8549965, y: 0.7930915}
+    - - {x: -1.0981046, y: -0.4519345}
+      - {x: -1.0561244, y: -0.49401718}
+      - {x: -1.0347451, y: -0.5046352}
+      - {x: -0.96513504, y: -0.50464237}
+      - {x: -0.9436185, y: -0.49387679}
+      - {x: -0.9018127, y: -0.4517826}
+      - {x: -0.89079833, y: -0.42980897}
+      - {x: -0.89127374, y: 0.4307324}
+      - {x: -0.9008861, y: 0.4518299}
+      - {x: -0.9435035, y: 0.49449918}
+      - {x: -0.96488917, y: 0.50457764}
+      - {x: -1.035096, y: 0.5045869}
+      - {x: -1.0561062, y: 0.49403375}
+      - {x: -1.0980964, y: 0.4520756}
+      - {x: -1.1086795, y: 0.43097085}
+      - {x: -1.1087939, y: -0.4305182}
   m_UseDelaunayMesh: 0
 --- !u!50 &5720032357487314882
 Rigidbody2D:
@@ -332,8 +332,8 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: -0.96, y: 0}
-  m_ConnectedAnchor: {x: -0.96, y: 0}
+  m_Anchor: {x: -1, y: 0}
+  m_ConnectedAnchor: {x: -1, y: 0}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -353,7 +353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6018278181759789408}
   - component: {fileID: 228094411055856739}
-  - component: {fileID: 8107571088378317355}
+  - component: {fileID: 6987335400486003380}
   - component: {fileID: 3110492939824664251}
   - component: {fileID: 3276353795142627581}
   m_Layer: 0
@@ -433,7 +433,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &8107571088378317355
+--- !u!60 &6987335400486003380
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -471,7 +471,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.8, y: 4.8}
+    oldSize: {x: 5, y: 5}
     newSize: {x: 4.8, y: 4.8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -479,22 +479,20 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.9253131, y: 0.86538285}
-      - {x: 0.90570354, y: 0.8548268}
-      - {x: 0.865468, y: 0.81456167}
-      - {x: 0.85484964, y: 0.7938515}
-      - {x: 0.854739, y: -0.79178333}
-      - {x: 0.8654146, y: -0.81413233}
-      - {x: 0.9057064, y: -0.85454905}
-      - {x: 0.9259664, y: -0.86477035}
-      - {x: 0.9940653, y: -0.86477035}
-      - {x: 1.0143766, y: -0.85397476}
-      - {x: 1.0546131, y: -0.8138207}
-      - {x: 1.0650406, y: -0.7931443}
-      - {x: 1.0651503, y: 0.79359627}
-      - {x: 1.055089, y: 0.814454}
-      - {x: 1.0145969, y: 0.85500246}
-      - {x: 0.9935961, y: 0.8653828}
+    - - {x: 0.9649034, y: 0.5046193}
+      - {x: 0.943929, y: 0.49407735}
+      - {x: 0.9018259, y: 0.45204204}
+      - {x: 0.89130837, y: 0.431014}
+      - {x: 0.8899212, y: -0.42989865}
+      - {x: 0.9648085, y: -0.5044216}
+      - {x: 1.035244, y: -0.50444096}
+      - {x: 1.0563202, y: -0.49382466}
+      - {x: 1.0981433, y: -0.45193544}
+      - {x: 1.1089212, y: -0.43055862}
+      - {x: 1.1087109, y: 0.4310073}
+      - {x: 1.098197, y: 0.4520403}
+      - {x: 1.0561457, y: 0.49400222}
+      - {x: 1.0349644, y: 0.50464785}
   m_UseDelaunayMesh: 0
 --- !u!50 &3110492939824664251
 Rigidbody2D:
@@ -538,8 +536,8 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0.96, y: 0}
-  m_ConnectedAnchor: {x: 0.96, y: 0}
+  m_Anchor: {x: 1, y: 0}
+  m_ConnectedAnchor: {x: 1, y: 0}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -595,7 +593,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7444653119145306687}
   - component: {fileID: 4743876994838961970}
-  - component: {fileID: 9038927190565870816}
+  - component: {fileID: 3933152827661926320}
   - component: {fileID: 6080663538369700212}
   - component: {fileID: 250299223646984706}
   m_Layer: 0
@@ -675,7 +673,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &9038927190565870816
+--- !u!60 &3933152827661926320
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -713,7 +711,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.8, y: 4.8}
+    oldSize: {x: 5, y: 5}
     newSize: {x: 4.8, y: 4.8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -721,23 +719,22 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.25255966, y: 1.0655402}
-      - {x: -0.7933727, y: 1.0654799}
-      - {x: -0.8142996, y: 1.0548044}
-      - {x: -0.85470295, y: 1.0139427}
-      - {x: -0.8652743, y: 0.9939354}
-      - {x: -0.8652743, y: 0.9275245}
-      - {x: -0.8548517, y: 0.90675974}
-      - {x: -0.81434727, y: 0.8651561}
-      - {x: -0.79389507, y: 0.85472584}
-      - {x: 0.79352665, y: 0.8544691}
-      - {x: 0.8148065, y: 0.8655117}
-      - {x: 0.85480404, y: 0.90620166}
-      - {x: 0.8650712, y: 0.9267895}
-      - {x: 0.8650178, y: 0.993955}
-      - {x: 0.8547821, y: 1.0144157}
-      - {x: 0.81434536, y: 1.0546107}
-      - {x: 0.7947956, y: 1.0655715}
+    - - {x: -0.43040097, y: 1.1094308}
+      - {x: -0.45192677, y: 1.0985425}
+      - {x: -0.49404255, y: 1.0561886}
+      - {x: -0.5048352, y: 1.0348568}
+      - {x: -0.5048859, y: 0.96592116}
+      - {x: -0.49397755, y: 0.9438977}
+      - {x: -0.45206144, y: 0.9019718}
+      - {x: -0.43088645, y: 0.8913169}
+      - {x: 0.42982718, y: 0.8910401}
+      - {x: 0.4519042, y: 0.9018133}
+      - {x: 0.49417844, y: 0.94419795}
+      - {x: 0.50494015, y: 0.96594906}
+      - {x: 0.50480896, y: 1.034547}
+      - {x: 0.49500677, y: 1.0556854}
+      - {x: 0.4516393, y: 1.099493}
+      - {x: 0.43015513, y: 1.1089945}
   m_UseDelaunayMesh: 0
 --- !u!50 &6080663538369700212
 Rigidbody2D:
@@ -781,8 +778,8 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0.96}
-  m_ConnectedAnchor: {x: 0, y: 0.96}
+  m_Anchor: {x: 0, y: 1}
+  m_ConnectedAnchor: {x: 0, y: 1}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -920,7 +917,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.8, y: 4.8}
+    oldSize: {x: 5, y: 5}
     newSize: {x: 4.8, y: 4.8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -928,22 +925,22 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.8547125, y: -0.90594476}
-      - {x: 0.8144007, y: -0.8655463}
-      - {x: 0.79390717, y: -0.85463}
-      - {x: -0.7933036, y: -0.8549377}
-      - {x: -0.8148403, y: -0.86503804}
-      - {x: -0.85552406, y: -0.9054543}
-      - {x: -0.8651961, y: -0.9259533}
-      - {x: -0.8656025, y: -0.9932642}
-      - {x: -0.85450554, y: -1.0144244}
-      - {x: -0.81391716, y: -1.0547786}
-      - {x: -0.7940692, y: -1.0651954}
-      - {x: 0.794099, y: -1.0649254}
-      - {x: 0.81427765, y: -1.0545115}
-      - {x: 0.8549757, y: -1.0137568}
-      - {x: 0.86492527, y: -0.99366915}
-      - {x: 0.86507595, y: -0.9265014}
+    - - {x: 0.49398658, y: -0.94372827}
+      - {x: 0.4518593, y: -0.90166175}
+      - {x: 0.43062946, y: -0.8910878}
+      - {x: -0.43079194, y: -0.89123625}
+      - {x: -0.45205185, y: -0.90189767}
+      - {x: -0.49401, y: -0.9438189}
+      - {x: -0.50460356, y: -0.9651209}
+      - {x: -0.5046485, y: -1.0347565}
+      - {x: -0.49404877, y: -1.055994}
+      - {x: -0.4519652, y: -1.0981066}
+      - {x: -0.4309518, y: -1.108621}
+      - {x: 0.43083116, y: -1.1086688}
+      - {x: 0.45197734, y: -1.0981096}
+      - {x: 0.49403793, y: -1.0560501}
+      - {x: 0.50467646, y: -1.0344961}
+      - {x: 0.5046456, y: -0.9651202}
   m_UseDelaunayMesh: 0
 --- !u!50 &6551385356532315377
 Rigidbody2D:
@@ -987,8 +984,8 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: -0.96}
-  m_ConnectedAnchor: {x: 0, y: -0.96}
+  m_Anchor: {x: 0, y: -1}
+  m_ConnectedAnchor: {x: 0, y: -1}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
