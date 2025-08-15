@@ -4,6 +4,7 @@ public class MachineSlime : Slime, IAbsorbable, IDividable //머신에 들어갈 수 있
 {
     private bool isDivided = false;
 
+    public int DivideConcentration { get; set; }
     public bool IsDivided
     {
         get

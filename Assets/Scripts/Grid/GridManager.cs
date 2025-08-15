@@ -22,7 +22,6 @@ public class GridManager : MonoBehaviour
     {
         width = (int)((gridCamera.orthographicSize * gridCamera.aspect) * 2 + 0.5f);
         height = (int)(gridCamera.orthographicSize) * 2 - 2;
-        Debug.Log(width + ", " + height);
         grid = new GridSystem<int>(width, height, cellSize, transform.parent.position - new Vector3(width / 2, height / 2, 0) + new Vector3(-0.5f, 0f), 
             (gridSystem, cellX, cellY) => 0);
 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 209392283156478895}
   - component: {fileID: 2196245003400336193}
   - component: {fileID: 4360349742363895092}
-  - component: {fileID: 5153122514008359175}
+  - component: {fileID: 3329740089737330093}
   m_Layer: 0
   m_Name: Sprite-0005-3
   m_TagString: Untagged
@@ -125,7 +125,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 2.5}
   m_Radius: 0.5
---- !u!114 &5153122514008359175
+--- !u!114 &3329740089737330093
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3771557476148461966}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58190b727e1261f4085ad5048b582991, type: 3}
+  m_Script: {fileID: 11500000, guid: 148b601eb950d4c47a11f899b098b3bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4918977486001838705

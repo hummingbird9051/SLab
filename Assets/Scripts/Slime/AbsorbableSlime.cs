@@ -5,6 +5,8 @@ public class AbsorbableSlime : GroundSlime, IDraggable, ISelectable, IAbsorbable
 //(선택은 아직 만들지 않음.)
 {
 
+    public int DivideConcentration { get; set; }
+
     private bool isDragging = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()

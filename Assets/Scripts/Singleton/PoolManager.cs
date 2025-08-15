@@ -42,7 +42,7 @@ public class PoolManager : SingletonBase<PoolManager>
         }
     }
 
-    public GameObject SpawnFromPool(string tag, Vector3 position)
+    public GameObject SpawnFromPool(string tag, Vector3 position, int concentration)
     {
         //해당 키 없으면 반환
         if (!poolDict.ContainsKey(tag))
@@ -56,6 +56,9 @@ public class PoolManager : SingletonBase<PoolManager>
         //활성화하고
         objectFromPool.SetActive(true);
         objectFromPool.transform.position = position;
+        IAbsorbable absorbable = objectFromPool.GetComponent<IAbsorbable>();
+        if (absorbable != null)
+            absorbable.DivideConcentration = concentration;
 
         //다시 큐에 넣음(재사용)
         poolDict[tag].Enqueue(objectFromPool);

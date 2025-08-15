@@ -10,6 +10,7 @@ public class TempSetter : MonoBehaviour
         {
             PoolManager.Instance.RefreshPool();
             spawnManage.SetCurrentSlimeLevel(0);
+            spawnManage.SetCurrentSlimeConcentration(2);
             spawnManage.SpawnSlime("Ground", new Vector3(0, 0, -1));
         }
     }
