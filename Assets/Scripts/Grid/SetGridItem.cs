@@ -24,4 +24,12 @@ public class SetGridItem : MonoBehaviour
             }
         }
     }
+
+    void Update()
+    {
+        if (SpawnManager.Instance.GetCurrentSlimeLevel() >= 1)
+        {
+            transform.GetChild(transform.childCount - 1).gameObject.SetActive(true);
+        }
+    }
 }
