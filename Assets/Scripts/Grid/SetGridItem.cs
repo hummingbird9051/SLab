@@ -5,6 +5,8 @@ public class SetGridItem : MonoBehaviour
 {
     public GameObject gridManagerObj;
 
+    public Sprite pressedSprite;
+
     void Start()
     {
         GridManager gridManager = gridManagerObj.GetComponent<GridManager>(); //게임 매니저 오브젝트에서 GridManager 컴포넌트 추출
@@ -20,6 +22,11 @@ public class SetGridItem : MonoBehaviour
                 {
                     Button btn = child.AddComponent<Button>();
                     btn.onClick.AddListener(() => gridManager.SetCurrentTileId(index)); //타일 순서로 정해 타일 배치
+
+                    btn.transition = Selectable.Transition.SpriteSwap;
+                    SpriteState spriteState = btn.spriteState;
+                    spriteState.pressedSprite = pressedSprite;
+                    btn.spriteState = spriteState;
                 }
             }
         }
