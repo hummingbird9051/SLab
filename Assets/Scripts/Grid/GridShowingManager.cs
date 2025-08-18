@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GridShowingManager : SingletonBase<GridShowingManager>
 {
-    public event Action<int> SelectIndexAction;
+    public event Action<int> SelectIndexAction; // C# ¹®¹ý
 
     [Serializable]
     struct Criteria

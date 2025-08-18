@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1728531873543050700}
   - component: {fileID: 9090878349188461355}
   m_Layer: 0
-  m_Name: KingSlime2
+  m_Name: KS_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6303281714191449858, guid: b515c54c53ebea2409bdc42388312d2b, type: 3}
+  m_Sprite: {fileID: -3106452256871507004, guid: ccd676a7f125e4948ae8ee84932a720d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,7 +101,7 @@ Animator:
   m_GameObject: {fileID: 2566694490266330442}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7b49a712f550dec4a9eccb48b2d07b97, type: 2}
+  m_Controller: {fileID: 9100000, guid: ddf41f5e142e40c45b82000c8a4dcd6c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

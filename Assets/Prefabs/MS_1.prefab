@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6254833709629711171}
   - component: {fileID: -3494488601778821806}
   m_Layer: 0
-  m_Name: MachineSlime1
+  m_Name: MS_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
