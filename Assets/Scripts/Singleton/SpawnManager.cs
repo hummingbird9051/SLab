@@ -7,6 +7,14 @@ public class SpawnManager : SingletonBase<SpawnManager>
     private int currentSpawnNum; // 0:ÀÏ¹Ý, 1:±ÍÁ·, 2:Å·
     private int currentSlimeConcentration;
 
+    [SerializeField] private int _levelNum;
+
+    public int LevelNum
+    {
+        get => _levelNum;
+        set => _levelNum = value;
+    }
+
     protected override void Awake()
     {
         base.Awake();
@@ -16,7 +24,7 @@ public class SpawnManager : SingletonBase<SpawnManager>
 
     void Update()
     {
-        if (SlimeCounter.Instance.SlimeCount > 500)
+        if (SlimeCounter.Instance.SlimeCount > LevelNum)
         {
             UpgradeSlime();
         }
@@ -44,8 +52,12 @@ public class SpawnManager : SingletonBase<SpawnManager>
     public void UpgradeSlime()
     {
         PoolManager.Instance.RefreshPool();
-        if (currentSpawnNum >= groundPrefabTag.Length) return;
         currentSpawnNum += 1;
+        if (currentSpawnNum >= groundPrefabTag.Length)
+        {
+            KingSlimeSpawner.Instance.SpawnKingSlime();
+            Restart();
+        }
         SpawnSlime("Ground", new Vector3(0, 0, -1));
     }
 
@@ -67,6 +79,14 @@ public class SpawnManager : SingletonBase<SpawnManager>
     public void SetCurrentSlimeConcentration(int concentration)
     {
         currentSlimeConcentration = concentration;
+    }
+
+    public void Restart()
+    {
+        PoolManager.Instance.RefreshPool();
+        SetCurrentSlimeLevel(0);
+        SetCurrentSlimeConcentration(2);
+        SpawnSlime("Ground", new Vector3(0, 0, -1));
     }
 
 }

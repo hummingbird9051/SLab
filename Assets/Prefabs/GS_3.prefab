@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7879441386942920948}
   - component: {fileID: 7085785163645117174}
   - component: {fileID: 7599021074517861937}
-  - component: {fileID: 2141655190179997960}
+  - component: {fileID: 1036849664280207436}
   m_Layer: 0
-  m_Name: GS_2
+  m_Name: GS_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 626432301376018660, guid: f041fb4b94f3e7e4a897d5fc92ebb442, type: 3}
+  m_Sprite: {fileID: -2244920282207884691, guid: 6dacb066c12608d4f92295caab65098a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,7 +101,7 @@ Animator:
   m_GameObject: {fileID: 8956327498202709177}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 75a3b271feab9e14f8940457ddc08186, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6d5bae729effedb48aebdcaec161cf2c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf2716caec13f594dafafe39c8e80d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!60 &2141655190179997960
+--- !u!60 &1036849664280207436
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

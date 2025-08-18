@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,13 +31,14 @@ public class SetGridItem : MonoBehaviour
                 }
             }
         }
+
+        GridShowingManager.Instance.SelectIndexAction += UpdateGrid;
     }
 
-    void Update()
+    private void UpdateGrid(int index)
     {
-        if (SpawnManager.Instance.GetCurrentSlimeLevel() >= 1)
-        {
-            transform.GetChild(transform.childCount - 1).gameObject.SetActive(true);
-        }
+        Debug.Log($"{index} , {index + 1} Activate");
+        transform.GetChild(index).gameObject.SetActive(true);
+        transform.GetChild(index + 1).gameObject.SetActive(true);
     }
 }

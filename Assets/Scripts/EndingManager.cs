@@ -4,11 +4,13 @@ public class EndingManager : MonoBehaviour
 {
     [SerializeField] private GameObject target;
 
-    void Update()
+    void OnEnable()
     {
-        if (SpawnManager.Instance.GetCurrentSlimeLevel() >= 2)
-        {
-            target.SetActive(true);
-        }
+        KingSlimeSpawner.Instance.Ending += EndGame;
+    }
+
+    private void EndGame()
+    {
+        target.SetActive(true);
     }
 }

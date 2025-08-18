@@ -7,10 +7,12 @@ public class GameDataManager : SingletonBase<GameDataManager>
     [SerializeField] private int _slimeNum = 1;
     [SerializeField] private int _slimeLevel;
     [SerializeField] private int _slimeConcentration = 2;
+    private int _kingNum = 0;
 
     private const string SLIME_NUM = "slimeNum";
     private const string SLIME_LEVEL = "slimeLevel";
     private const string SLIME_CONCENTRATION = "slimeConcentration";
+    private const string KING_SLIME_NUM = "kingSlimeNum";
 
 
     protected override void Awake()
@@ -19,13 +21,11 @@ public class GameDataManager : SingletonBase<GameDataManager>
         LoadSlimeLevel();
         LoadSlimeNum();
         LoadSlimeConcentration();
+        LoadKingNum();
         Debug.Log(_slimeLevel);
         Debug.Log(_slimeNum);
         Debug.Log(_slimeConcentration);
-    }
-
-    void Update()
-    {
+        Debug.Log(_kingNum);
     }
 
     //slimeNum -----------------------------
@@ -78,10 +78,27 @@ public class GameDataManager : SingletonBase<GameDataManager>
 
     public int GetSlimeConcentration() => _slimeConcentration;
 
+    //kingNum----------------------------------------------------
+
+    public int GetKingNum() => _kingNum;
+
+    public void SaveKingNum()
+    {
+        _kingNum = KingSlimeSpawner.Instance.GetKingIndex();
+        PlayerPrefs.SetInt(KING_SLIME_NUM, _kingNum);
+        PlayerPrefs.Save();
+    }
+
+    public void LoadKingNum()
+    {
+        _kingNum = PlayerPrefs.GetInt(KING_SLIME_NUM, 0);
+    }
+
     void OnApplicationQuit()
     {
         SaveSlimeLevel();
         SaveSlimeNum();
         SaveSlimeConcentration();
+        SaveKingNum();
     }
 }
