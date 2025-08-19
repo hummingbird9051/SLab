@@ -64,6 +64,7 @@ public class GridManager : MonoBehaviour
                 grid.SetValue(x, y, currentTileId);
 
                 gridView.UpdateTileVisual(x, y);
+                PoolManager.Instance.ConsumeSlime(gridView.tileObjects[currentTileId].costSlime);
                 currentTileId = 0;
             }
         }

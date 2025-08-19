@@ -69,6 +69,29 @@ public class PoolManager : SingletonBase<PoolManager>
         obj.SetActive(false);
     }
 
+    public void ConsumeSlime(int num)
+    {
+        List<GameObject> childList = new List<GameObject>();
+        foreach (Transform childTransform in parentObject.transform)
+        {
+            if (!childTransform.gameObject.name.Contains("KS"))
+               if(childTransform.gameObject.activeSelf)
+                    childList.Add(childTransform.gameObject);
+        }
+
+        if (childList.Count <= num)
+        {
+            Debug.Log("슬라임 수 부족");
+        }
+        else
+        {
+            for (int i = 0; i < num; i++)
+            {
+                childList[i].SetActive(false);
+            }
+        }
+    }
+
     public void RefreshPool()
     { 
         List<Transform> childList = new List<Transform>();

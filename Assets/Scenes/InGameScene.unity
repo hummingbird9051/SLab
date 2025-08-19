@@ -9397,22 +9397,31 @@ MonoBehaviour:
   tileObjects:
   - tileObject: {fileID: 0}
     tileSize: {x: 0, y: 0}
+    costSlime: 0
   - tileObject: {fileID: 4356725863417705585, guid: 78282a6731568cb4ab58ca28d7e6c51f, type: 3}
     tileSize: {x: 5, y: 7}
+    costSlime: 0
   - tileObject: {fileID: 6381897529808435770, guid: 7e2fbb545b321004da104c5482014e3d, type: 3}
     tileSize: {x: 10, y: 5}
+    costSlime: 0
   - tileObject: {fileID: 6484132692979766369, guid: 588c8a1c91f074146b98279d074aeaef, type: 3}
     tileSize: {x: 6, y: 4}
+    costSlime: 10
   - tileObject: {fileID: 2241422792807448924, guid: b02d7b133ff527a40a0b27a365ac9dcd, type: 3}
     tileSize: {x: 3, y: 3}
+    costSlime: 20
   - tileObject: {fileID: 4918977486001838705, guid: 8ba42576e895c5746af9baa94c032286, type: 3}
     tileSize: {x: 5, y: 7}
+    costSlime: 100
   - tileObject: {fileID: 1000681593772409000, guid: 0c61364ca4410a845abaea77983a1b88, type: 3}
     tileSize: {x: 6, y: 12}
+    costSlime: 100
   - tileObject: {fileID: 1863850842853717304, guid: c465501e46061364b9b3d93202270ed8, type: 3}
     tileSize: {x: 8, y: 10}
+    costSlime: 200
   - tileObject: {fileID: 9200888888819854528, guid: 549e0a666b12449419c8d64fa28ae925, type: 3}
     tileSize: {x: 5, y: 15}
+    costSlime: 200
 --- !u!1 &824729622
 GameObject:
   m_ObjectHideFlags: 0

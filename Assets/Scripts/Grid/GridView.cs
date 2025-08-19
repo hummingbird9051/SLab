@@ -15,6 +15,7 @@ public class GridView : MonoBehaviour
     private int prevX = -1;
     private int prevY = -1;
     private Vector2Int currentTileSize;
+    [SerializeField] private int eraseGridCost;
 
     //클래스를 만들어 인스펙터 창에 보여줄 수 있게 만들수 있는 코드
     [System.Serializable]
@@ -22,6 +23,7 @@ public class GridView : MonoBehaviour
     {
         public GameObject tileObject;
         public Vector2Int tileSize;
+        public int costSlime;
     }
 
     public List<TileObject> tileObjects;
@@ -127,6 +129,7 @@ public class GridView : MonoBehaviour
     //인게임 UI로 모든 배치된 분열기 제거.
     public void DeleteAllTileVisual()
     {
+        bool isEmpty = true;
         for (int x = 0; x < grid.GetWidth(); x++)
         {
             for (int y = 0; y < grid.GetHeight(); y++)
@@ -134,8 +137,14 @@ public class GridView : MonoBehaviour
                 if (visualGridArray[x, y] != null)
                 {
                     Destroy(visualGridArray[x, y]);
+                    isEmpty = false;
                 }
             }
+        }
+
+        if (!isEmpty)
+        {
+            PoolManager.Instance.ConsumeSlime(eraseGridCost);
         }
     }
 
