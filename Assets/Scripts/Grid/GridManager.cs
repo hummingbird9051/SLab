@@ -59,12 +59,11 @@ public class GridManager : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) && grid.GetValue(x, y) != 0)
         {
-            if (currentTileId != 0)
+            if (currentTileId != 0 && PoolManager.Instance.ConsumeSlime(gridView.tileObjects[currentTileId].costSlime))
             {
                 grid.SetValue(x, y, currentTileId);
 
                 gridView.UpdateTileVisual(x, y);
-                PoolManager.Instance.ConsumeSlime(gridView.tileObjects[currentTileId].costSlime);
                 currentTileId = 0;
             }
         }

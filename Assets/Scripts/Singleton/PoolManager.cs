@@ -69,7 +69,7 @@ public class PoolManager : SingletonBase<PoolManager>
         obj.SetActive(false);
     }
 
-    public void ConsumeSlime(int num)
+    public bool ConsumeSlime(int num)
     {
         List<GameObject> childList = new List<GameObject>();
         foreach (Transform childTransform in parentObject.transform)
@@ -82,6 +82,7 @@ public class PoolManager : SingletonBase<PoolManager>
         if (childList.Count <= num)
         {
             Debug.Log("슬라임 수 부족");
+            return false;
         }
         else
         {
@@ -89,6 +90,7 @@ public class PoolManager : SingletonBase<PoolManager>
             {
                 childList[i].SetActive(false);
             }
+            return true;
         }
     }
 

@@ -136,16 +136,26 @@ public class GridView : MonoBehaviour
             {
                 if (visualGridArray[x, y] != null)
                 {
-                    Destroy(visualGridArray[x, y]);
                     isEmpty = false;
                 }
             }
         }
 
-        if (!isEmpty)
+        if (!isEmpty && PoolManager.Instance.ConsumeSlime(eraseGridCost))
         {
-            PoolManager.Instance.ConsumeSlime(eraseGridCost);
+            for (int x = 0; x < grid.GetWidth(); x++)
+            {
+                for (int y = 0; y < grid.GetHeight(); y++)
+                {
+                    if (visualGridArray[x, y] != null)
+                    {
+                        Destroy(visualGridArray[x, y]);
+                    }
+                }
+            }
         }
+
+        
     }
 
     //특정 위치에 타일 비주얼 생성
