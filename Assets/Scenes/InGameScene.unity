@@ -9394,6 +9394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98555d873fcf0234ba0ec2d19a1b0799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eraseGridCost: 10
   tileObjects:
   - tileObject: {fileID: 0}
     tileSize: {x: 0, y: 0}
