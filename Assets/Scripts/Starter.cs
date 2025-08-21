@@ -10,7 +10,7 @@ public class Starter : MonoBehaviour
         for (int i = 0; i < slimeNum; i++)
         {
             SpawnManager.Instance.SpawnSlime(
-                "Ground", 
+                "Ground",
                 new Vector3(Random.Range(firstPos.position.x + 0.5f, firstPos.position.x - 0.5f),
                     Random.Range(firstPos.position.y + 0.5f, firstPos.position.y - 0.5f),
                     firstPos.position.z

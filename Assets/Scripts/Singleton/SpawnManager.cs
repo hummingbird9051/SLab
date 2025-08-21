@@ -6,13 +6,14 @@ public class SpawnManager : SingletonBase<SpawnManager>
     public string[] machinePrefabTag;
     private int currentSpawnNum; // 0:일반, 1:귀족, 2:킹
     private int currentSlimeConcentration;
+    [SerializeField] int ConcentrationUpgradeCost;
 
-    [SerializeField] private int _levelNum;
+    [SerializeField] private int[] _levelNum;
 
     public int LevelNum
     {
-        get => _levelNum;
-        set => _levelNum = value;
+        get => _levelNum[currentSpawnNum];
+        //set => _levelNum = value;
     }
 
     protected override void Awake()
@@ -24,7 +25,7 @@ public class SpawnManager : SingletonBase<SpawnManager>
 
     void Update()
     {
-        if (SlimeCounter.Instance.SlimeCount > LevelNum)
+        if (SlimeCounter.Instance.SlimeCount >= LevelNum)
         {
             UpgradeSlime();
         }
@@ -45,8 +46,16 @@ public class SpawnManager : SingletonBase<SpawnManager>
 
     public GameObject SpawnSlime(string MachineOrGround, Vector3 pos, int concentration)
     {
-        Debug.Log(concentration);
-        return PoolManager.Instance.SpawnFromPool(machinePrefabTag[currentSpawnNum], pos, concentration);
+        if (MachineOrGround == "Machine")
+        {
+            return PoolManager.Instance.SpawnFromPool(machinePrefabTag[currentSpawnNum], pos, concentration);
+        }
+        else if (MachineOrGround == "Ground")
+        {
+            return PoolManager.Instance.SpawnFromPool(groundPrefabTag[currentSpawnNum], pos, concentration);
+        }
+
+        return null;
     }
 
     public void UpgradeSlime()
@@ -58,6 +67,7 @@ public class SpawnManager : SingletonBase<SpawnManager>
             KingSlimeSpawner.Instance.SpawnKingSlime();
             Restart();
         }
+        Debug.Log(currentSlimeConcentration);
         SpawnSlime("Ground", new Vector3(0, 0, -1));
     }
 
@@ -67,7 +77,10 @@ public class SpawnManager : SingletonBase<SpawnManager>
 
     public void ConcentrationUpgrade()
     {
-        currentSlimeConcentration += 1;
+        if (PoolManager.Instance.ConsumeSlime(ConcentrationUpgradeCost))
+        {
+            currentSlimeConcentration *= 2;
+        }
     }
 
     //나중에 무조건 지워야 하는 것.
@@ -85,7 +98,6 @@ public class SpawnManager : SingletonBase<SpawnManager>
     {
         PoolManager.Instance.RefreshPool();
         SetCurrentSlimeLevel(0);
-        SetCurrentSlimeConcentration(2);
         SpawnSlime("Ground", new Vector3(0, 0, -1));
     }
 

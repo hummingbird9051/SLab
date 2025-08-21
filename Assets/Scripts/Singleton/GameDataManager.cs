@@ -6,7 +6,7 @@ public class GameDataManager : SingletonBase<GameDataManager>
 {
     [SerializeField] private int _slimeNum = 1;
     [SerializeField] private int _slimeLevel;
-    [SerializeField] private int _slimeConcentration = 2;
+    [SerializeField] private int _slimeConcentration = 8;
     private int _kingNum = 0;
 
     private const string SLIME_NUM = "slimeNum";

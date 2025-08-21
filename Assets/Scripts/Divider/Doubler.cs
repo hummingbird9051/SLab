@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Doubler : MonoBehaviour
@@ -26,6 +27,7 @@ public class Doubler : MonoBehaviour
     void OnTriggerExit2D(Collider2D other)
     {
         IDividable dividable = other.GetComponent<IDividable>();
+
         dividable.BeUndivide();
     }
 }

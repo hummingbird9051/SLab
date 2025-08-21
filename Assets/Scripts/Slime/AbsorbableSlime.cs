@@ -1,4 +1,7 @@
+using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AbsorbableSlime : GroundSlime, IDraggable, ISelectable, IAbsorbable
 //머신으로 빨려 들어갈 수 있는 객체들(일반/귀족 슬라임). 따라서 드래그와 선택이 가능한 구조로 만듦
@@ -8,10 +11,13 @@ public class AbsorbableSlime : GroundSlime, IDraggable, ISelectable, IAbsorbable
     public int DivideConcentration { get; set; }
 
     private bool isDragging = false;
+
+    [SerializeField]
+    float spawnDuration;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
     }
 
     // Update is called once per frame
@@ -55,5 +61,23 @@ public class AbsorbableSlime : GroundSlime, IDraggable, ISelectable, IAbsorbable
         rb.linearVelocity = pow;
     }
 
-    
+    private void OnEnable()
+    {
+        base.OnEnable();
+
+        StartCoroutine(SpawnCoroutine());
+    }
+
+    IEnumerator SpawnCoroutine()
+    {
+        yield return new WaitForSeconds(spawnDuration);
+
+        while (DivideConcentration > 1)
+        {
+            SpawnManager.Instance.SpawnSlime("Ground", transform.position, DivideConcentration / 2);
+            DivideConcentration /= 2;
+
+            yield return new WaitForSeconds(spawnDuration);
+        }
+    }
 }

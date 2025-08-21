@@ -9,6 +9,7 @@ public class Restarter : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             SpawnManager.Instance.Restart();
+            SpawnManager.Instance.SetCurrentSlimeConcentration(8);
             KingSlimeSpawner.Instance.SetKingIndex(0);
         }
     }

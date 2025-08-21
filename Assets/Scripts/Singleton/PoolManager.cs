@@ -50,19 +50,28 @@ public class PoolManager : SingletonBase<PoolManager>
             return null;
         }
 
-        //풀에서 하나 뽑아서
-        GameObject objectFromPool = poolDict[tag].Dequeue();
+        while (true)
+        {
+            //풀에서 하나 뽑아서
+            GameObject objectFromPool = poolDict[tag].Dequeue();
 
-        //활성화하고
-        objectFromPool.SetActive(true);
-        objectFromPool.transform.position = position;
-        IAbsorbable absorbable = objectFromPool.GetComponent<IAbsorbable>();
-        if (absorbable != null)
-            absorbable.DivideConcentration = concentration;
+            if (objectFromPool.activeSelf == true)
+            {
+                poolDict[tag].Enqueue(objectFromPool);
+                continue;
+            }
 
-        //다시 큐에 넣음(재사용)
-        poolDict[tag].Enqueue(objectFromPool);
-        return objectFromPool;
+            //활성화하고
+            objectFromPool.SetActive(true);
+            objectFromPool.transform.position = position;
+            IAbsorbable absorbable = objectFromPool.GetComponent<IAbsorbable>();
+            if (absorbable != null)
+                absorbable.DivideConcentration = concentration;
+
+            //다시 큐에 넣음(재사용)
+            poolDict[tag].Enqueue(objectFromPool);
+            return objectFromPool;
+        }
     }
 
     public void DeSpawnToPool(GameObject obj) {
@@ -81,6 +90,7 @@ public class PoolManager : SingletonBase<PoolManager>
 
         if (childList.Count <= num)
         {
+            // 팝업
             Debug.Log("슬라임 수 부족");
             return false;
         }
