@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class SpawnManager : SingletonBase<SpawnManager>
@@ -7,6 +8,8 @@ public class SpawnManager : SingletonBase<SpawnManager>
     private int currentSpawnNum; // 0:¿œπ›, 1:±Õ¡∑, 2:≈∑
     private int currentSlimeConcentration;
     [SerializeField] int ConcentrationUpgradeCost;
+
+    public event Action KingSlimeAppeared;
 
     [SerializeField] private int[] _levelNum;
 
@@ -65,6 +68,10 @@ public class SpawnManager : SingletonBase<SpawnManager>
         if (currentSpawnNum >= groundPrefabTag.Length)
         {
             KingSlimeSpawner.Instance.SpawnKingSlime();
+            if (currentSpawnNum == 1)
+            {
+                KingSlimeAppeared?.Invoke();
+            }
             Restart();
         }
         Debug.Log(currentSlimeConcentration);

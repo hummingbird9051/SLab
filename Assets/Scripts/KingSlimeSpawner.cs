@@ -12,7 +12,6 @@ public class KingSlimeSpawner : SingletonBase<KingSlimeSpawner>
     {
         base.Awake();
         kingIndex = GameDataManager.Instance.GetKingNum();
-        
     }
 
     void Start()

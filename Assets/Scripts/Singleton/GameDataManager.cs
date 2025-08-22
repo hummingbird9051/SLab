@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameDataManager : SingletonBase<GameDataManager>
@@ -8,11 +9,19 @@ public class GameDataManager : SingletonBase<GameDataManager>
     [SerializeField] private int _slimeLevel;
     [SerializeField] private int _slimeConcentration = 8;
     private int _kingNum = 0;
+    private List<int> _gridTileId;
+    private List<int> _x;
+    private List<int> _y;
+
+    public event Action<int, int, int> GridInitializer; 
 
     private const string SLIME_NUM = "slimeNum";
     private const string SLIME_LEVEL = "slimeLevel";
     private const string SLIME_CONCENTRATION = "slimeConcentration";
     private const string KING_SLIME_NUM = "kingSlimeNum";
+    private const string GRID_TILE_ID = "gridTileId";
+    private const string GRID_X = "gridX";
+    private const string GRID_Y = "gridY";
 
 
     protected override void Awake()
@@ -26,6 +35,11 @@ public class GameDataManager : SingletonBase<GameDataManager>
         Debug.Log(_slimeNum);
         Debug.Log(_slimeConcentration);
         Debug.Log(_kingNum);
+    }
+
+    void Start()
+    {
+        LoadGrid();
     }
 
     //slimeNum -----------------------------
@@ -94,11 +108,84 @@ public class GameDataManager : SingletonBase<GameDataManager>
         _kingNum = PlayerPrefs.GetInt(KING_SLIME_NUM, 0);
     }
 
+    //GridLoad--------------------------------------
+
+    public void LoadGrid()
+    {
+        string loadedTileString = PlayerPrefs.GetString(GRID_TILE_ID);
+        string loadedXString = PlayerPrefs.GetString(GRID_X);
+        string loadedYString = PlayerPrefs.GetString(GRID_Y);
+        string[] tileIds = loadedTileString.Split(',');
+        string[] XArray = loadedXString.Split(',');
+        string[] YArray = loadedYString.Split(',');
+        foreach (var s in tileIds)
+        {
+            Debug.Log(s + "tileId");
+        }
+
+        foreach (var s in XArray)
+        {
+            Debug.Log(s + "x");
+        }
+        foreach (var s in YArray)
+        {
+            Debug.Log(s + "y");
+        }
+        _gridTileId = new List<int>();
+        _x = new List<int>();
+        _y = new List<int>();
+        int tempTileId;
+        int tempX;
+        int tempY;
+        for (int i = 0; i < tileIds.Length; i++)
+        {
+            if (int.TryParse(tileIds[i], out tempTileId))
+                _gridTileId.Add(tempTileId);
+            if (int.TryParse(XArray[i], out tempX))
+                _x.Add(tempX);
+            if (int.TryParse(YArray[i], out tempY))
+                _y.Add(tempY);
+        }
+
+        for (int i = 0; i < tileIds.Length; i++)
+        {
+            GridInitializer?.Invoke(_gridTileId[i], _x[i], _y[i]);
+        }
+    }
+
+    public void AddGridInfo(int tileId, int x, int y)
+    {
+        _gridTileId.Add(tileId);
+        _x.Add(x);
+        _y.Add(y);
+        Debug.Log(_x + ", " + _y + ", " + _gridTileId);
+    }
+
+    public void DeleteAllGridInfo()
+    {
+        _gridTileId = new List<int>();
+        _x = new List<int>();
+        _y = new List<int>();
+    }
+
+    public void SaveGridInfo()
+    {
+        string gridTileString = string.Join(",", _gridTileId);
+        string gridXString = string.Join(",", _x);
+        string gridYString = string.Join(",", _y);
+        Debug.Log(gridTileString + "tile, " + gridXString + "x, " + gridYString + "y");
+        PlayerPrefs.SetString(GRID_TILE_ID, gridTileString);
+        PlayerPrefs.SetString(GRID_X, gridXString);
+        PlayerPrefs.SetString(GRID_Y, gridYString);
+        PlayerPrefs.Save();
+    }
+
     void OnApplicationQuit()
     {
         SaveSlimeLevel();
         SaveSlimeNum();
         SaveSlimeConcentration();
+        SaveGridInfo();
         SaveKingNum();
     }
 }

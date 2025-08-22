@@ -1975,7 +1975,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &364435741
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13395,6 +13395,67 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transferTag: Machine
   toPosition: {fileID: 93047794}
+--- !u!1 &1433464019
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1433464020}
+  - component: {fileID: 1433464022}
+  - component: {fileID: 1433464021}
+  m_Layer: 0
+  m_Name: UIAnimControl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1433464020
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433464019}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 614.00757, y: 433.32953, z: -6.5697036}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1433464021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433464019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d650de63280083544ba2589eecb6aaa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panel: {fileID: 705220662}
+  anim: {fileID: 1948768453}
+--- !u!114 &1433464022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433464019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df2feefe2a9d9ef4c875f8031f0fdce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panel: {fileID: 364435740}
+  anim: {fileID: 1930798217}
 --- !u!1 &1469053153
 GameObject:
   m_ObjectHideFlags: 0
@@ -15079,7 +15140,7 @@ MonoBehaviour:
   - MachineSlime
   - MachineSlime2
   - MachineSlime3
-  ConcentrationUpgradeCost: 0
+  ConcentrationUpgradeCost: 2
   _levelNum: 32000000fa000000e8030000
 --- !u!1 &1811948765
 GameObject:
@@ -15242,7 +15303,7 @@ Transform:
   m_GameObject: {fileID: 1872492172}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20059,3 +20120,4 @@ SceneRoots:
   - {fileID: 220803627}
   - {fileID: 273891898}
   - {fileID: 1920647844}
+  - {fileID: 1433464020}

@@ -9,6 +9,7 @@ public class EndingManager : MonoBehaviour
         KingSlimeSpawner.Instance.Ending += EndGame;
     }
 
+
     private void EndGame()
     {
         target.SetActive(true);

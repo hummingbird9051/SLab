@@ -11,6 +11,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] private GridView gridView;
     [SerializeField] private GridLineVisualizer gridLineVisualizer;
 
+
     //해당 그리드가 들어갈 위치를 정하기 위해 카메라 컴포넌트로 받음.
     public Camera gridCamera;
 
@@ -18,11 +19,12 @@ public class GridManager : MonoBehaviour
 
     //타일 번호 저장
     private int currentTileId = 1;
-    void Start()
+
+    void Awake()
     {
         width = (int)((gridCamera.orthographicSize * gridCamera.aspect) * 2 + 0.5f);
         height = (int)(gridCamera.orthographicSize) * 2 - 2;
-        grid = new GridSystem<int>(width, height, cellSize, transform.parent.position - new Vector3(width / 2, height / 2, 0) + new Vector3(-0.5f, 0f), 
+        grid = new GridSystem<int>(width, height, cellSize, transform.parent.position - new Vector3(width / 2, height / 2, 0) + new Vector3(-0.5f, 0f),
             (gridSystem, cellX, cellY) => 0);
 
         if (gridLineVisualizer != null)
@@ -32,6 +34,17 @@ public class GridManager : MonoBehaviour
 
         gridView.Initialize(grid);
     }
+    
+    void Start()
+    {
+        
+    }
+
+    void OnEnable()
+    {
+        GameDataManager.Instance.GridInitializer += DrawGrid;
+    }
+    
 
     public void Update()
     {
@@ -61,9 +74,8 @@ public class GridManager : MonoBehaviour
         {
             if (currentTileId != 0 && PoolManager.Instance.ConsumeSlime(gridView.tileObjects[currentTileId].costSlime))
             {
-                grid.SetValue(x, y, currentTileId);
-
-                gridView.UpdateTileVisual(x, y);
+                DrawGrid(currentTileId, x, y);
+                GameDataManager.Instance.AddGridInfo(currentTileId, x, y);
                 currentTileId = 0;
             }
         }
@@ -74,5 +86,13 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    
+    public void DrawGrid(int tileId, int x, int y)
+    {
+        grid.SetValue(x, y, tileId);
+        gridView.UpdateTileVisual(x, y);
+    }
+
+
+
+
 }

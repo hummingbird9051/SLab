@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
@@ -18,6 +19,8 @@ public class PoolManager : SingletonBase<PoolManager>
     public List<Pool> pools;
 
     private Dictionary<string, Queue<GameObject>> poolDict;
+
+    public event Action NotEnoughSlimes;
 
     protected override void Awake()
     {
@@ -95,6 +98,7 @@ public class PoolManager : SingletonBase<PoolManager>
         {
             // 팝업
             Debug.Log("슬라임 수 부족");
+            NotEnoughSlimes?.Invoke();
             return false;
         }
         else

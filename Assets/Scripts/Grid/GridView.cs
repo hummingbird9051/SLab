@@ -154,8 +154,7 @@ public class GridView : MonoBehaviour
                 }
             }
         }
-
-        
+        GameDataManager.Instance.DeleteAllGridInfo();
     }
 
     //특정 위치에 타일 비주얼 생성

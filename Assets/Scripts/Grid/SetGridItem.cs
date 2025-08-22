@@ -12,6 +12,7 @@ public class SetGridItem : MonoBehaviour
     {
         GridManager gridManager = gridManagerObj.GetComponent<GridManager>(); //게임 매니저 오브젝트에서 GridManager 컴포넌트 추출
         if (gridManager == null) return;
+        
         if (transform.childCount > 0)
         {
             for (int i = 0; i < transform.childCount; i++) // 각 자식의 순서를
@@ -30,7 +31,15 @@ public class SetGridItem : MonoBehaviour
                     btn.spriteState = spriteState;
                 }
             }
+            if (KingSlimeSpawner.Instance.GetKingIndex() >= 1)
+            {
+                for (int i = 1; i < transform.childCount; i++)
+                {
+                    transform.GetChild(i).gameObject.SetActive(true);
+                }
+            }
         }
+        
 
         GridShowingManager.Instance.SelectIndexAction += UpdateGrid;
     }
