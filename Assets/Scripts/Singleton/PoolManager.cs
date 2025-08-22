@@ -50,28 +50,31 @@ public class PoolManager : SingletonBase<PoolManager>
             return null;
         }
 
-        while (true)
+        for (int i = 0; i < poolDict[tag].Count; i++)
         {
             //풀에서 하나 뽑아서
             GameObject objectFromPool = poolDict[tag].Dequeue();
 
-            if (objectFromPool.activeSelf == true)
+            if (objectFromPool.activeSelf == false)
+            {
+                //활성화하고
+                objectFromPool.SetActive(true);
+                objectFromPool.transform.position = position;
+                IAbsorbable absorbable = objectFromPool.GetComponent<IAbsorbable>();
+                if (absorbable != null)
+                    absorbable.DivideConcentration = concentration;
+
+                //다시 큐에 넣음(재사용)
+                poolDict[tag].Enqueue(objectFromPool);
+                return objectFromPool;
+            }
+            else
             {
                 poolDict[tag].Enqueue(objectFromPool);
-                continue;
             }
-
-            //활성화하고
-            objectFromPool.SetActive(true);
-            objectFromPool.transform.position = position;
-            IAbsorbable absorbable = objectFromPool.GetComponent<IAbsorbable>();
-            if (absorbable != null)
-                absorbable.DivideConcentration = concentration;
-
-            //다시 큐에 넣음(재사용)
-            poolDict[tag].Enqueue(objectFromPool);
-            return objectFromPool;
         }
+
+        return null;
     }
 
     public void DeSpawnToPool(GameObject obj) {
