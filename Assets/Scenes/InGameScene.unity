@@ -1228,7 +1228,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10 Slime
+  m_text: 50 Slime
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10656,7 +10656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98555d873fcf0234ba0ec2d19a1b0799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eraseGridCost: 10
+  eraseGridCost: 0
   tileObjects:
   - tileObject: {fileID: 0}
     tileSize: {x: 0, y: 0}
@@ -15140,7 +15140,7 @@ MonoBehaviour:
   - MachineSlime
   - MachineSlime2
   - MachineSlime3
-  ConcentrationUpgradeCost: 2
+  ConcentrationUpgradeCost: 50
   _levelNum: 32000000fa000000e8030000
 --- !u!1 &1811948765
 GameObject:
