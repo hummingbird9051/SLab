@@ -13,6 +13,10 @@ public class SlimeCounter : SingletonBase<SlimeCounter>
         {
             return _slimeCount;
         }
+        set
+        {
+            _slimeCount = value;
+        }
     }
     protected override void Awake()
     {

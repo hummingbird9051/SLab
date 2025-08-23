@@ -99,6 +99,7 @@ public class PoolManager : SingletonBase<PoolManager>
             // 팝업
             Debug.Log("슬라임 수 부족");
             NotEnoughSlimes?.Invoke();
+            Debug.Log("Invoked");
             return false;
         }
         else

@@ -66,6 +66,8 @@ public class AbsorbableSlime : GroundSlime, IDraggable, ISelectable, IAbsorbable
         base.OnEnable();
 
         StartCoroutine(SpawnCoroutine());
+
+        isDragging = false;
     }
 
     IEnumerator SpawnCoroutine()

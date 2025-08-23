@@ -20,6 +20,7 @@ public class NotEnoughSlimePopup : MonoBehaviour
     IEnumerator NotEnoughAnimPopUpDown()
     {
         panel.SetActive(true);
+        yield return StartCoroutine(anim.DoPopUpAnimation());
         yield return new WaitForSeconds(1f);
         yield return StartCoroutine(anim.DoPopDownAnimation());
         panel.SetActive(false);

@@ -7,7 +7,7 @@ public class EndingPopup : MonoBehaviour
     public PopUpAnimation anim;
     void OnEnable()
     {
-        SpawnManager.Instance.KingSlimeAppeared += AnimStarter;
+        KingSlimeSpawner.Instance.Ending += AnimStarter;
     }
 
     void AnimStarter()
@@ -18,6 +18,7 @@ public class EndingPopup : MonoBehaviour
     IEnumerator NotEnoughAnimPopUpDown()
     {
         panel.SetActive(true);
+        yield return StartCoroutine(anim.DoPopUpAnimation());
         yield return new WaitForSeconds(1f);
         yield return StartCoroutine(anim.DoPopDownAnimation());
         panel.SetActive(false);

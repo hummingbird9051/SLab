@@ -68,9 +68,10 @@ public class SpawnManager : SingletonBase<SpawnManager>
         if (currentSpawnNum >= groundPrefabTag.Length)
         {
             KingSlimeSpawner.Instance.SpawnKingSlime();
-            if (currentSpawnNum == 1)
+            if (KingSlimeSpawner.Instance.GetKingIndex() == 1)
             {
                 KingSlimeAppeared?.Invoke();
+                Debug.Log("Invoked");
             }
             Restart();
         }

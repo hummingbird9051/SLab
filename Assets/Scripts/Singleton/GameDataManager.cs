@@ -149,6 +149,7 @@ public class GameDataManager : SingletonBase<GameDataManager>
 
         for (int i = 0; i < tileIds.Length; i++)
         {
+            if (tileIds.Length <= 0 && i >= tileIds.Length) break;
             GridInitializer?.Invoke(_gridTileId[i], _x[i], _y[i]);
         }
     }

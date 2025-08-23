@@ -19,14 +19,16 @@ public class KingSlimeSpawner : SingletonBase<KingSlimeSpawner>
         for (int i = 0; i < kingIndex; i++)
         {
             Instantiate(kingSlimePrefab[i], this.transform);
+            SlimeCounter.Instance.SlimeCount -= 1;
         }
     }
 
     public void SpawnKingSlime()
     {
         Instantiate(kingSlimePrefab[kingIndex], this.transform);
+        SlimeCounter.Instance.SlimeCount -= 1;
         kingIndex++;
-        if (kingIndex >= kingSlimePrefab.Count)
+        if (kingIndex == 1)
         {
             Ending?.Invoke();
         }

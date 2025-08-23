@@ -5,13 +5,12 @@ public class PopUpAnimation : MonoBehaviour
 {
     public float animationDuration = 0.1f;
     private Vector3 minScale = new Vector3(0f, 0f, 1f);
-    private Vector3 maxScale;
+    private Vector3 maxScale = new Vector3(3f, 3f, 3f);
 
     private Coroutine currentAnimationCoroutine;
 
     void OnEnable()
     {
-        maxScale = transform.localScale;
         if (currentAnimationCoroutine != null)
         {
             StopCoroutine(currentAnimationCoroutine);
@@ -29,7 +28,7 @@ public class PopUpAnimation : MonoBehaviour
         }
     }
 
-    IEnumerator DoPopUpAnimation()
+    public IEnumerator DoPopUpAnimation()
     {
         transform.localScale = minScale;
         float timer = 0f;
