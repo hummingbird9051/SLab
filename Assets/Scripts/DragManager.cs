@@ -17,6 +17,10 @@ public class DragManager : MonoBehaviour
         {
             HandleSelection();
         }
+        if(Input.GetMouseButtonDown(1))
+        {
+            HandleRightSelection();
+        }
 
         if (currentDragTarget != null && Input.GetMouseButton(0))
         {
@@ -30,6 +34,19 @@ public class DragManager : MonoBehaviour
         }
     }
 
+    private void HandleRightSelection()
+    {
+        Vector2 worldPoint = inCamera.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
+
+        if (hit.collider != null)
+        {
+            currentSelection?.Deselect();
+            currentSelection = hit.collider.GetComponent<ISelectable>();
+            currentSelection?.Select();
+        }
+    }
+
     private void HandleSelection() 
      //마우스의 스크린 좌표를 월드 좌표로 바꿔서 IDraggable 컴포넌트가 존재하는 객체만 움직일 수 있게
     {
@@ -38,13 +55,9 @@ public class DragManager : MonoBehaviour
 
         if (hit.collider != null)
         {
-            currentSelection?.Deselect();
 
             currentDragObject = hit.collider.gameObject;
-            currentSelection = hit.collider.GetComponent<ISelectable>();
             currentDragTarget = hit.collider.GetComponent<IDraggable>();
-
-            currentSelection?.Select();
             currentDragTarget?.BeginDrag();
         }
     }

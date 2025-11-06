@@ -11,6 +11,8 @@ public class GridManager : MonoBehaviour
     [SerializeField] private GridView gridView;
     [SerializeField] private GridLineVisualizer gridLineVisualizer;
 
+    private bool isSlimeUpdatable;
+
 
     //해당 그리드가 들어갈 위치를 정하기 위해 카메라 컴포넌트로 받음.
     public Camera gridCamera;
@@ -72,9 +74,13 @@ public class GridManager : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) && grid.GetValue(x, y) != 0)
         {
-            if (currentTileId != 0 && PoolManager.Instance.ConsumeSlime(gridView.tileObjects[currentTileId].costSlime))
+            if (currentTileId != 0 && SlimeCounter.Instance.SlimeCount > gridView.tileObjects[currentTileId].costSlime)
             {
                 DrawGrid(currentTileId, x, y);
+                if (isSlimeUpdatable)
+                {
+                    PoolManager.Instance.ConsumeSlime(gridView.tileObjects[currentTileId].costSlime);
+                }
                 GameDataManager.Instance.AddGridInfo(currentTileId, x, y);
                 currentTileId = 0;
             }
@@ -89,7 +95,7 @@ public class GridManager : MonoBehaviour
     public void DrawGrid(int tileId, int x, int y)
     {
         grid.SetValue(x, y, tileId);
-        gridView.UpdateTileVisual(x, y);
+        isSlimeUpdatable = gridView.UpdateTileVisual(x, y);
     }
 
 

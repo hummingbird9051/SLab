@@ -18,6 +18,7 @@ public class AbsorbableSlime : GroundSlime, IDraggable, ISelectable, IAbsorbable
     protected override void Awake()
     {
         base.Awake();
+        isDragging = false;
     }
 
     // Update is called once per frame
@@ -28,23 +29,26 @@ public class AbsorbableSlime : GroundSlime, IDraggable, ISelectable, IAbsorbable
     }
 
     //ISelectable 구현
-    public void Select() { }
+    public void Select() // when press the right mouse(Selection)
+    {
+        DivideObject();
+    }
 
     public void Deselect() { }
 
 
     //IDraggable 구현
-    public void BeginDrag()
+    public void BeginDrag() // when pres the left mouse(Begin Dragging)
     {
         isDragging = true;
     }
 
-    public void Drag()
+    public void Drag() // when pres the left mouse(is Dragging)
     {
         isDragging = true;
     }
 
-    public void EndDrag()
+    public void EndDrag() // when pres the left mouse(End Draggging)
     {
         isDragging = false;
     }
@@ -61,7 +65,7 @@ public class AbsorbableSlime : GroundSlime, IDraggable, ISelectable, IAbsorbable
         rb.linearVelocity = pow;
     }
 
-    private void OnEnable()
+    protected override void OnEnable() 
     {
         base.OnEnable();
 
@@ -76,10 +80,16 @@ public class AbsorbableSlime : GroundSlime, IDraggable, ISelectable, IAbsorbable
 
         while (DivideConcentration > 1)
         {
-            SpawnManager.Instance.SpawnSlime("Ground", transform.position, DivideConcentration / 2);
-            DivideConcentration /= 2;
-
+            DivideObject();
+            
             yield return new WaitForSeconds(spawnDuration);
         }
+    }
+
+    void DivideObject()
+    {
+        SpawnManager.Instance.SpawnSlime("Ground", transform.position, DivideConcentration / 2);
+        SpawnManager.Instance.SpawnSlime("Ground", transform.position, DivideConcentration / 2);
+        gameObject.SetActive(false);
     }
 }

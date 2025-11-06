@@ -14,7 +14,7 @@ public class Slime : MonoBehaviour
     }
 
     //Start is called once before the first execution of Update after the MonoBehaviour is created
-    protected void OnEnable()
+    protected virtual void OnEnable()
     {
         OnSlimeEnabled?.Invoke();
     }

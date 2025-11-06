@@ -10,9 +10,14 @@ public class GroundSlime : Slime //그라운드에 있는 슬라임 일반/귀족/킹 슬라임 모
     private bool isChangingDirection = false; //현재 방향을 바꾸는 중인가?에 대한 부울 변수
 
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        StartCoroutine(ChangeDirectionAfterDelay(0.5f));
+    }
     protected virtual void Awake()
     {
-        rb = GetComponent<Rigidbody2D>(); //Slime에 RequireComponent로 있어야하는 Rigidbody 컴포넌트 가져오기
+        rb = GetComponent<Rigidbody2D>();
         rb.linearVelocity = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)); //시작할 때 각 객체 랜덤 속도 설정
     }
 

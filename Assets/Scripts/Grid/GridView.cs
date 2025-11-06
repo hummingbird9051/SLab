@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Xml.XPath;
 using NUnit.Framework;
 using Unity.Collections;
 using Unity.VisualScripting;
@@ -105,10 +106,11 @@ public class GridView : MonoBehaviour
 
 
     //특정 칸 비주얼 업데이트
-    public void UpdateTileVisual(int x, int y)
+    public bool UpdateTileVisual(int x, int y)
     {
-        CreateTileVisual(x, y);
+        bool result = CreateTileVisual(x, y);
         prevX = -1; prevY = -1;
+        return result;
     }
 
 
@@ -158,7 +160,7 @@ public class GridView : MonoBehaviour
     }
 
     //특정 위치에 타일 비주얼 생성
-    private void CreateTileVisual(int x, int y)
+    private bool CreateTileVisual(int x, int y)
     //분열기 프리팹은 만드는거 상관 없어도 넣을땐 직사각형으로 한정해야할듯.
     //지금의 내 실력으론 직사각형 모양이 한계..
     //프리팹을 GridView 객체에 넣고 직사각형 가로세로 사이즈 정해주면 그 크기만큼 그리드 좌표에 생성해주는 구조.
@@ -166,11 +168,11 @@ public class GridView : MonoBehaviour
     {
         int tileId = grid.GetValue(x, y); //그리드 좌표 x,y에 넣을 타일 ID 받아오기
 
-        if (tileId <= 0 || tileId >= tileObjects.Count) return; //타일 ID가 현재 타일 종류 갯수보다 많으면 리턴
+        if (tileId <= 0 || tileId >= tileObjects.Count) return false; //타일 ID가 현재 타일 종류 갯수보다 많으면 리턴
 
         currentTileSize = tileObjects[tileId].tileSize; //현재 타일 크기
 
-        if (!IsPlacementValid(x, y, currentTileSize)) return;
+        if (!IsPlacementValid(x, y, currentTileSize)) return false;
 
         GameObject tileObject = Instantiate(tileObjects[tileId].tileObject, this.transform);//프리팹의 객체 복사
         tileObject.transform.position = new Vector3(grid.GetWorldPosition(x, y).x, grid.GetWorldPosition(x, y).y, -1); //위치 설정
@@ -193,6 +195,7 @@ public class GridView : MonoBehaviour
                 visualGridArray[x + indX, y + indY] = clearObj;
             }
         }
+        return true;
     }
 
 
